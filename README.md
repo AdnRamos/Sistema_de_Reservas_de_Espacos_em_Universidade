@@ -68,10 +68,11 @@ classDiagram
 
       %% Relationships
       Departamentos "1" -- "N" Espacos : contem >
+      Usuarios "1" -- "N" CertificacoesDeTreinamento : possui >
+      Treinamentos "1" -- "N" CertificacoesDeTreinamento : valida >
       Usuarios "1" -- "N" Reservas : realiza >
       Espacos "1" -- "N" Reservas : reservado_por >
       Espacos "1" -- "N" Equipamentos : contem >
-      Usuarios "1" -- "N" CertificacoesDeTreinamento : possui >
-      Treinamentos "1" -- "N" CertificacoesDeTreinamento : valida >
+      
       Espacos "1" -- "N" RestricoesDeHorario : possui >
 ```
