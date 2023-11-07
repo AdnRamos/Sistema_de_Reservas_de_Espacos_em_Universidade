@@ -7,9 +7,8 @@ O objetivo é permitir a gestão simples e pratica de reserva de espaços, como 
 
 ## Diagrama de Classes UML
 
-Abaixo está o diagrama de classes UML do sistema:
-
 ```mermaid
+
 classDiagram
       class Departamentos {
           -int id
@@ -77,7 +76,9 @@ classDiagram
       Espacos "1" -- "N" Equipamentos : contem >
       Espacos "1" -- "N" RestricoesDeHorario : possui >
 ```
+
 ## Diagrama ER
+
 ```mermaid
 erDiagram
     DEPARTAMENTOS ||--o{ ESPACOS : contem
@@ -187,7 +188,8 @@ The goal is to enable simple and practical management and reservation of spaces 
 
 Below is the UML class diagram of the system:
 
-```mermeid
+```mermaid
+
 classDiagram
       class Departments {
           -int id
@@ -258,7 +260,7 @@ classDiagram
 ```
 ### ER Diagram
 
-```mermeid
+```mermaid
 erDiagram
     DEPARTMENTS ||--o{ SPACES : contains
     USERS ||--o{ TRAINING-CERTIFICATIONS : owns
