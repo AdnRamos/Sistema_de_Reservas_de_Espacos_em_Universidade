@@ -11,60 +11,60 @@ O objetivo é permitir a gestão simples e pratica de reserva de espaços, como 
 
 classDiagram
       class Departamentos {
-          -int id
-          -string nome
-          -string responsavel
-          -string contato
+          -id: Long
+          -nome: String 
+          -responsavel: String
+          -contato: String
       }
       class Espacos {
-          -int id
-          -string nome
-          -string tipo
-          -int capacidade
-          -string equipamentosDisponiveis
-          -string fotos
-          -string horariosDisponiveis
-          -int departamentoID
+          -id: Long
+          -nome: String
+          -tipo: String
+          -capacidade: int
+          -equipamentosDisponiveis: String
+          -fotos: String
+          -horariosDisponiveis: String
+          -departamentoID: Long
       }
       class Usuarios {
-          -int id
-          -string nome
-          -string email
-          -string tipo
+          -id: Long
+          -nome: String
+          -email: String
+          -tipo: String
       }
       class Reservas {
-          -int id
-          -int usuarioID
-          -int espacoID
-          -datetime dataHoraInicio
-          -datetime dataHoraTermino
-          -string finalidade
-          -string status
+          -id: Long
+          -usuarioID: int
+          -espacoID: int 
+          -dataHoraInicio: dateTime 
+          -dataHoraTermino: dateTime 
+          -finalidade: String
+          -status: String
       }
       class Equipamentos {
-          -int id
-          -string nome
-          -string descricao
-          -int quantidadeDisponivel
-          -string status
+          -id: Long
+          -nome: String
+          -descricao: String
+          -quantidadeDisponivel: int
+          -status: String
       }
       class Treinamentos {
-          -int id
-          -string descricao
-          -string espacosEquipamentosAssociados
+          -id: Long
+          -descricao: String
+          -espacosEquipamentosAssociados: String
       }
       class CertificacoesDeTreinamento {
-          -int usuarioID
-          -int treinamentoID
-          -date dataObtencao
-          -date dataValidade
+          -usuarioID: Long
+          -treinamentoID: Long
+          -dataObtencao: dateTime
+          -dataValidade: dateTime 
       }
       class RestricoesDeHorario {
-          -int espacoID
-          -string diaDaSemana
-          -time horarioInicio
-          -time horarioTermino
-          -string motivo
+          -espacoID: Long
+          -diaDaSemana: String 
+          -horarioInicio: dateTime 
+          -horarioTermino: dateTime
+          -motivo: String 
       }
 
       %% Relationships
@@ -90,68 +90,68 @@ erDiagram
     ESPACOS ||--o{ RESTRICOES-DE-HORARIO : possui
 
     DEPARTAMENTOS {
-        int id PK "Identificador único"
-        string nome "Nome do departamento"
-        string responsavel "Responsável"
-        string contato "Contato"
+        Long id PK "Identificador único"
+        String nome "Nome do departamento"
+        String responsavel "Responsável"
+        String contato "Contato"
     }
 
     ESPACOS {
-        int id PK "Identificador único"
-        string nome "Nome"
-        string tipo "Tipo (sala, laboratório, auditório)"
+        Long id PK "Identificador único"
+        String nome "Nome"
+        String tipo "Tipo (sala, laboratório, auditório)"
         int capacidade "Capacidade"
-        string equipamentosDisponiveis "Equipamentos disponíveis"
-        string fotos "Fotos"
-        string horariosDisponiveis "Horários disponíveis"
-        int departamentoID FK "Departamento responsável"
-        string regrasEspecificas "Regras específicas"
+        String equipamentosDisponiveis "Equipamentos disponíveis"
+        String fotos "Fotos"
+        String horariosDisponiveis "Horários disponíveis"
+        Long departamentoID FK "Departamento responsável"
+        String regrasEspecificas "Regras específicas"
     }
 
     USUARIOS {
-        int id PK "Identificador único"
-        string nome "Nome"
-        string email "Email"
-        string tipo "Tipo (professor, aluno, etc.)"
+        Long id PK "Identificador único"
+        String nome "Nome"
+        String email "Email"
+        String tipo "Tipo (professor, aluno, etc.)"
     }
 
     RESERVAS {
-        int id PK "Identificador único"
-        int usuarioID FK "ID do usuário"
-        int espacoID FK "ID do espaço"
+        Long id PK "Identificador único"
+        Long usuarioID FK "ID do usuário"
+        Long espacoID FK "ID do espaço"
         dateTime dataHoraInicio "Data/hora de início"
         dateTime dataHoraTermino "Data/hora de término"
-        string finalidade "Finalidade"
-        string status "Status"
+        String finalidade "Finalidade"
+        String status "Status"
     }
 
     EQUIPAMENTOS {
-        int id PK "Identificador único"
-        string nome "Nome"
-        string descricao "Descrição"
+        Long id PK "Identificador único"
+        String nome "Nome"
+        String descricao "Descrição"
         int quantidadeDisponivel "Quantidade disponível"
-        string status "Status"
+        String status "Status"
     }
 
     TREINAMENTOS {
-        int id PK "Identificador único"
-        string descricao "Descrição"
-        string espacosEquipamentosAssociados "Espaços/equipamentos associados"
+        Long id PK "Identificador único"
+        String descricao "Descrição"
+        String espacosEquipamentosAssociados "Espaços/equipamentos associados"
     }
 
     CERTIFICACOES-DE-TREINAMENTO {
-        int usuarioID FK "ID do usuário"
-        int treinamentoID FK "ID do treinamento"
-        date dataObtencao "Data de obtenção"
-        date dataValidade "Data de validade"
+        Long usuarioID FK "ID do usuário"
+        Long treinamentoID FK "ID do treinamento"
+        dateTime dataObtencao "Data de obtenção"
+        dateTime dataValidade "Data de validade"
     }
 
     RESTRICOES-DE-HORARIO {
-        int espacoID FK "ID do espaço"
-        string diaDaSemana "Dia da semana"
-        time horarioInicio "Horário de início"
-        time horarioTermino "Horário de término"
-        string motivo "Motivo"
+        Long espacoID FK "ID do espaço"
+        String diaDaSemana "Dia da semana"
+        dateTime horarioInicio "Horário de início"
+        dateTIme horarioTermino "Horário de término"
+        String motivo "Motivo"
     }
 
 ```
@@ -190,60 +190,60 @@ The goal is to enable simple and practical management and reservation of spaces 
 
 classDiagram
       class Departments {
-          -int id
-          -string name
-          -string manager
-          -string contact
+          -id: Long
+          -name: String
+          -manager: String
+          -contact: String
       }
       class Spaces {
-          -int id
-          -string name
-          -string type
-          -int capacity
-          -string availableEquipment
-          -string photos
-          -string availableHours
-          -int departmentID
+          -id: Long
+          -name: String
+          -type: String
+          -capacity: int
+          -availableEquipment: String
+          -photos: String
+          -availableHours: String
+          -departmentID: Long
       }
       class Users {
-          -int id
-          -string name
-          -string email
-          -string type
+          -id: Long
+          -name: String
+          -email: String
+          -type: String
       }
       class Reservations {
-          -int id
-          -int userID
-          -int spaceID
+          -id: Long
+          -userID: Long
+          -spaceID: Long
           -datetime startTime
           -datetime endTime
-          -string purpose
-          -string status
+          -purpose: String
+          -status: String
       }
       class Equipment {
-          -int id
-          -string name
-          -string description
-          -int availableQuantity
-          -string status
+          -id: Long
+          -name: String 
+          -description: String
+          -availableQuantity: int
+          -status: String
       }
       class Trainings {
-          -int id
-          -string description
-          -string associatedSpacesEquipment
+          -id: Long
+          -description: String
+          -associatedSpacesEquipment: String
       }
       class TrainingCertifications {
-          -int userID
-          -int trainingID
-          -date acquisitionDate
-          -date validityDate
+          -userID: Long
+          -trainingID: Long
+          -acquisitionDate: dateTime
+          -validityDate: dateTime
       }
       class TimeRestrictions {
-          -int spaceID
-          -string dayOfWeek
-          -time startTime
-          -time endTime
-          -string reason
+          -spaceID: Long
+          -dayOfWeek: String
+          -startTime: dateTime
+          -endTime: dateTime
+          -reason: String
       }
 
       %% Relationships
@@ -269,68 +269,68 @@ erDiagram
     SPACES ||--o{ TIME-RESTRICTIONS : has
 
     DEPARTMENTS {
-        int id PK "Unique identifier"
-        string name "Department name"
-        string manager "Manager"
-        string contact "Contact information"
+        Long id PK "Unique identifier"
+        String name "Department name"
+        String manager "Manager"
+        String contact "Contact information"
     }
 
     SPACES {
-        int id PK "Unique identifier"
-        string name "Name"
-        string type "Type (classroom, laboratory, auditorium)"
+        Long id PK "Unique identifier"
+        String name "Name"
+        String type "Type (classroom, laboratory, auditorium)"
         int capacity "Capacity"
-        string availableEquipment "Available equipment"
-        string photos "Photos"
-        string availableHours "Available hours"
-        int departmentID FK "Responsible department"
-        string specificRules "Specific rules"
+        String availableEquipment "Available equipment"
+        String photos "Photos"
+        String availableHours "Available hours"
+        Long departmentID FK "Responsible department"
+        String specificRules "Specific rules"
     }
 
     USERS {
-        int id PK "Unique identifier"
-        string name "Name"
-        string email "Email"
-        string type "Type (professor, student, etc.)"
+        Long id PK "Unique identifier"
+        String name "Name"
+        String email "Email"
+        String type "Type (professor, student, etc.)"
     }
 
     RESERVATIONS {
-        int id PK "Unique identifier"
-        int userID FK "User ID"
-        int spaceID FK "Space ID"
+        Long id PK "Unique identifier"
+        Long userID FK "User ID"
+        Long spaceID FK "Space ID"
         dateTime startTime "Start date/time"
         dateTime endTime "End date/time"
-        string purpose "Purpose"
-        string status "Status"
+        String purpose "Purpose"
+        String status "Status"
     }
 
     EQUIPMENT {
-        int id PK "Unique identifier"
-        string name "Name"
-        string description "Description"
+        Long id PK "Unique identifier"
+        String name "Name"
+        String description "Description"
         int availableQuantity "Available quantity"
-        string status "Status"
+        String status "Status"
     }
 
     TRAININGS {
-        int id PK "Unique identifier"
-        string description "Description"
-        string associatedSpacesEquipment "Associated spaces/equipment"
+        Long id PK "Unique identifier"
+        String description "Description"
+        String associatedSpacesEquipment "Associated spaces/equipment"
     }
 
     TRAINING-CERTIFICATIONS {
-        int userID FK "User ID"
-        int trainingID FK "Training ID"
-        date acquisitionDate "Acquisition date"
-        date validityDate "Validity date"
+        Long userID FK "User ID"
+        Long trainingID FK "Training ID"
+        dateTime acquisitionDate "Acquisition date"
+        dateTime validityDate "Validity date"
     }
 
     TIME-RESTRICTIONS {
-        int spaceID FK "Space ID"
-        string dayOfWeek "Day of the week"
-        time startTime "Start time"
-        time endTime "End time"
-        string reason "Reason"
+        Long spaceID FK "Space ID"
+        String dayOfWeek "Day of the week"
+        dateTime startTime "Start time"
+        dateTime endTime "End time"
+        String reason "Reason"
     }
 ```
 
