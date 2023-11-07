@@ -1,4 +1,6 @@
-# Sistema Reservas de Espaços em Universidade
+Select a language: [Português](#sistema-de-reservas-de-espaços-em-universidade) | [English](#university-space-reservation-system)
+
+## Sistema de Reservas de Espaços em Universidade
 
 O objetivo é permitir a gestão simples e pratica de reserva de espaços, como salas, laboratórios, auditórios e equipamentos, em uma universidade. O sistema deve é capaz de gerenciar departamentos, usuários com diferentes papéis, treinamentos, equipamentos, restrições de horário, conflitos de agendamento, feedbacks e relatórios.
 
@@ -175,4 +177,184 @@ erDiagram
 - **Sistema de Penalidades:** Imposição de penalidades para usuários que não utilizam espaços reservados.
 
 - **Integração com Calendário Acadêmico:** Disponibilidade de espaços ajustada automaticamente com base no calendário acadêmico.
+
+
+## University Space Reservation System
+
+The goal is to enable simple and practical management and reservation of spaces such as classrooms, laboratories, auditoriums, and equipment within a university. The system is capable of managing departments, users with different roles, training, equipment, time restrictions, scheduling conflicts, feedback, and reports.
+
+### UML Class Diagram
+
+Below is the UML class diagram of the system:
+
+```mermeid
+classDiagram
+      class Departments {
+          -int id
+          -string name
+          -string manager
+          -string contact
+      }
+      class Spaces {
+          -int id
+          -string name
+          -string type
+          -int capacity
+          -string availableEquipment
+          -string photos
+          -string availableHours
+          -int departmentID
+      }
+      class Users {
+          -int id
+          -string name
+          -string email
+          -string type
+      }
+      class Reservations {
+          -int id
+          -int userID
+          -int spaceID
+          -datetime startTime
+          -datetime endTime
+          -string purpose
+          -string status
+      }
+      class Equipment {
+          -int id
+          -string name
+          -string description
+          -int availableQuantity
+          -string status
+      }
+      class Trainings {
+          -int id
+          -string description
+          -string associatedSpacesEquipment
+      }
+      class TrainingCertifications {
+          -int userID
+          -int trainingID
+          -date acquisitionDate
+          -date validityDate
+      }
+      class TimeRestrictions {
+          -int spaceID
+          -string dayOfWeek
+          -time startTime
+          -time endTime
+          -string reason
+      }
+
+      %% Relationships
+      Departments "1" -- "N" Spaces : contains >
+      Users "1" -- "N" TrainingCertifications : owns >
+      Trainings "1" -- "N" TrainingCertifications : validates >
+      Users "1" -- "N" Reservations : makes >
+      Spaces "1" -- "N" Reservations : reserved_by >
+      Spaces "1" -- "N" Equipment : contains >
+      Spaces "1" -- "N" TimeRestrictions : has >
+
+```
+### ER Diagram
+
+```mermeid
+erDiagram
+    DEPARTMENTS ||--o{ SPACES : contains
+    USERS ||--o{ TRAINING-CERTIFICATIONS : owns
+    USERS ||--o{ RESERVATIONS : makes
+    TRAININGS ||--o{ TRAINING-CERTIFICATIONS : validates
+    SPACES ||--o{ RESERVATIONS : reserved_by
+    SPACES ||--o{ EQUIPMENT : contains
+    SPACES ||--o{ TIME-RESTRICTIONS : has
+
+    DEPARTMENTS {
+        int id PK "Unique identifier"
+        string name "Department name"
+        string manager "Manager"
+        string contact "Contact information"
+    }
+
+    SPACES {
+        int id PK "Unique identifier"
+        string name "Name"
+        string type "Type (classroom, laboratory, auditorium)"
+        int capacity "Capacity"
+        string availableEquipment "Available equipment"
+        string photos "Photos"
+        string availableHours "Available hours"
+        int departmentID FK "Responsible department"
+        string specificRules "Specific rules"
+    }
+
+    USERS {
+        int id PK "Unique identifier"
+        string name "Name"
+        string email "Email"
+        string type "Type (professor, student, etc.)"
+    }
+
+    RESERVATIONS {
+        int id PK "Unique identifier"
+        int userID FK "User ID"
+        int spaceID FK "Space ID"
+        dateTime startTime "Start date/time"
+        dateTime endTime "End date/time"
+        string purpose "Purpose"
+        string status "Status"
+    }
+
+    EQUIPMENT {
+        int id PK "Unique identifier"
+        string name "Name"
+        string description "Description"
+        int availableQuantity "Available quantity"
+        string status "Status"
+    }
+
+    TRAININGS {
+        int id PK "Unique identifier"
+        string description "Description"
+        string associatedSpacesEquipment "Associated spaces/equipment"
+    }
+
+    TRAINING-CERTIFICATIONS {
+        int userID FK "User ID"
+        int trainingID FK "Training ID"
+        date acquisitionDate "Acquisition date"
+        date validityDate "Validity date"
+    }
+
+    TIME-RESTRICTIONS {
+        int spaceID FK "Space ID"
+        string dayOfWeek "Day of the week"
+        time startTime "Start time"
+        time endTime "End time"
+        string reason "Reason"
+    }
+```
+
+### Key System Functions:
+
+- **User Management:** Adding and configuring new users, defining roles and permissions.
+
+- **Department Management:** Creating and maintaining departments, associating responsible parties and spaces.
+
+- **Space and Equipment Management:** Updating spaces and equipment, maintaining availability and specific rules.
+
+- **Reservation Management:** Overseeing the reservation process, resolving scheduling conflicts and enforcing penalties.
+
+- **Space Reservation:** Authorized users can make reservations, with the system automatically checking for availability.
+
+- **Authorization Management:** Professors and administrative staff can authorize other users to reserve specific spaces.
+
+- **Dynamic Equipment Allocation:** Users can request equipment when making a reservation.
+
+- **Usage History:** Detailed record of all reservations and collection of feedback.
+
+- **Analysis and Reports:** Generation of reports on space utilization and equipment condition.
+
+- **Penalty System:** Imposing penalties for users who make reservations but do not use the spaces.
+
+- **Integration with Academic Calendar:** Automatic adjustment of space availability based on the academic calendar.
 
