@@ -186,8 +186,6 @@ The goal is to enable simple and practical management and reservation of spaces 
 
 ### UML Class Diagram
 
-Below is the UML class diagram of the system:
-
 ```mermaid
 
 classDiagram
