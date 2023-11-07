@@ -73,6 +73,83 @@ classDiagram
       Usuarios "1" -- "N" Reservas : realiza >
       Espacos "1" -- "N" Reservas : reservado_por >
       Espacos "1" -- "N" Equipamentos : contem >
-      
       Espacos "1" -- "N" RestricoesDeHorario : possui >
 ```
+## Diagrama ER
+```mermaid
+erDiagram
+    DEPARTAMENTOS ||--o{ ESPACOS : contem
+    USUARIOS ||--o{ CERTIFICACOES-DE-TREINAMENTO : possui
+    USUARIOS ||--o{ RESERVAS : realiza
+    TREINAMENTOS ||--o{ CERTIFICACOES-DE-TREINAMENTO : valida
+    ESPACOS ||--o{ RESERVAS : reservado_por
+    ESPACOS ||--o{ EQUIPAMENTOS : contem
+    ESPACOS ||--o{ RESTRICOES-DE-HORARIO : possui
+
+    DEPARTAMENTOS {
+        int id PK "Identificador único"
+        string nome "Nome do departamento"
+        string responsavel "Responsável"
+        string contato "Contato"
+    }
+
+    ESPACOS {
+        int id PK "Identificador único"
+        string nome "Nome"
+        string tipo "Tipo (sala, laboratório, auditório)"
+        int capacidade "Capacidade"
+        string equipamentosDisponiveis "Equipamentos disponíveis"
+        string fotos "Fotos"
+        string horariosDisponiveis "Horários disponíveis"
+        int departamentoID FK "Departamento responsável"
+        string regrasEspecificas "Regras específicas"
+    }
+
+    USUARIOS {
+        int id PK "Identificador único"
+        string nome "Nome"
+        string email "Email"
+        string tipo "Tipo (professor, aluno, etc.)"
+    }
+
+    RESERVAS {
+        int id PK "Identificador único"
+        int usuarioID FK "ID do usuário"
+        int espacoID FK "ID do espaço"
+        dateTime dataHoraInicio "Data/hora de início"
+        dateTime dataHoraTermino "Data/hora de término"
+        string finalidade "Finalidade"
+        string status "Status"
+    }
+
+    EQUIPAMENTOS {
+        int id PK "Identificador único"
+        string nome "Nome"
+        string descricao "Descrição"
+        int quantidadeDisponivel "Quantidade disponível"
+        string status "Status"
+    }
+
+    TREINAMENTOS {
+        int id PK "Identificador único"
+        string descricao "Descrição"
+        string espacosEquipamentosAssociados "Espaços/equipamentos associados"
+    }
+
+    CERTIFICACOES-DE-TREINAMENTO {
+        int usuarioID FK "ID do usuário"
+        int treinamentoID FK "ID do treinamento"
+        date dataObtencao "Data de obtenção"
+        date dataValidade "Data de validade"
+    }
+
+    RESTRICOES-DE-HORARIO {
+        int espacoID FK "ID do espaço"
+        string diaDaSemana "Dia da semana"
+        time horarioInicio "Horário de início"
+        time horarioTermino "Horário de término"
+        string motivo "Motivo"
+    }
+
+```
+
