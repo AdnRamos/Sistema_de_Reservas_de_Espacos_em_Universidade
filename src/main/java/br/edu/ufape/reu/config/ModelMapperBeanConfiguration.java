@@ -10,5 +10,5 @@ public class ModelMapperBeanConfiguration {
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
 	}
-	
+
 }

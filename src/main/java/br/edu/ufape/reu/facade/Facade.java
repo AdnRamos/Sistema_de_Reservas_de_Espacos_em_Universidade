@@ -5,15 +5,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ufape.reu.model.*;
-import br.edu.ufape.reu.service.*;
+import br.edu.ufape.reu.model.CertificacoesTreinamento;
+import br.edu.ufape.reu.model.Departamentos;
+import br.edu.ufape.reu.model.Equipamentos;
+import br.edu.ufape.reu.model.Espacos;
+import br.edu.ufape.reu.model.Reservas;
+import br.edu.ufape.reu.model.RestricoesHorario;
+import br.edu.ufape.reu.model.Treinamentos;
+import br.edu.ufape.reu.model.Usuarios;
+import br.edu.ufape.reu.service.CertificacoesTreinamentoService;
+import br.edu.ufape.reu.service.DepartamentosService;
+import br.edu.ufape.reu.service.EquipamentosService;
+import br.edu.ufape.reu.service.EspacosService;
+import br.edu.ufape.reu.service.ReservasService;
+import br.edu.ufape.reu.service.RestricoesHorarioService;
+import br.edu.ufape.reu.service.TreinamentosService;
+import br.edu.ufape.reu.service.UsuariosService;
 
 @Service
 public class Facade {
 	//Usuarios--------------------------------------------------------------
 	@Autowired
 	private UsuariosService  usuariosService;
-		
+
 	public Usuarios saveUsuarios(Usuarios newInstance) {
 		return usuariosService.saveUsuarios(newInstance);
 	}
@@ -37,12 +51,12 @@ public class Facade {
 	public void deleteUsuarios(long id) {
 		usuariosService.deleteUsuarios(id);
 	}
-	
+
 
 	//RestricoesHorario--------------------------------------------------------------
 	@Autowired
 	private RestricoesHorarioService  restricoesHorarioService;
-		
+
 	public RestricoesHorario saveRestricoesHorario(RestricoesHorario newInstance) {
 		return restricoesHorarioService.saveRestricoesHorario(newInstance);
 	}
@@ -66,12 +80,12 @@ public class Facade {
 	public void deleteRestricoesHorario(long id) {
 		restricoesHorarioService.deleteRestricoesHorario(id);
 	}
-	
+
 
 	//Departamentos--------------------------------------------------------------
 	@Autowired
 	private DepartamentosService  departamentosService;
-		
+
 	public Departamentos saveDepartamentos(Departamentos newInstance) {
 		return departamentosService.saveDepartamentos(newInstance);
 	}
@@ -95,12 +109,12 @@ public class Facade {
 	public void deleteDepartamentos(long id) {
 		departamentosService.deleteDepartamentos(id);
 	}
-	
+
 
 	//Equipamentos--------------------------------------------------------------
 	@Autowired
 	private EquipamentosService  equipamentosService;
-		
+
 	public Equipamentos saveEquipamentos(Equipamentos newInstance) {
 		return equipamentosService.saveEquipamentos(newInstance);
 	}
@@ -124,12 +138,12 @@ public class Facade {
 	public void deleteEquipamentos(long id) {
 		equipamentosService.deleteEquipamentos(id);
 	}
-	
+
 
 	//Treinamentos--------------------------------------------------------------
 	@Autowired
 	private TreinamentosService  treinamentosService;
-		
+
 	public Treinamentos saveTreinamentos(Treinamentos newInstance) {
 		return treinamentosService.saveTreinamentos(newInstance);
 	}
@@ -153,12 +167,12 @@ public class Facade {
 	public void deleteTreinamentos(long id) {
 		treinamentosService.deleteTreinamentos(id);
 	}
-	
+
 
 	//CertificacoesTreinamento--------------------------------------------------------------
 	@Autowired
 	private CertificacoesTreinamentoService  certificacoesTreinamentoService;
-		
+
 	public CertificacoesTreinamento saveCertificacoesTreinamento(CertificacoesTreinamento newInstance) {
 		return certificacoesTreinamentoService.saveCertificacoesTreinamento(newInstance);
 	}
@@ -182,12 +196,12 @@ public class Facade {
 	public void deleteCertificacoesTreinamento(long id) {
 		certificacoesTreinamentoService.deleteCertificacoesTreinamento(id);
 	}
-	
+
 
 	//Espacos--------------------------------------------------------------
 	@Autowired
 	private EspacosService  espacosService;
-		
+
 	public Espacos saveEspacos(Espacos newInstance) {
 		return espacosService.saveEspacos(newInstance);
 	}
@@ -211,12 +225,12 @@ public class Facade {
 	public void deleteEspacos(long id) {
 		espacosService.deleteEspacos(id);
 	}
-	
+
 
 	//Reservas--------------------------------------------------------------
 	@Autowired
 	private ReservasService  reservasService;
-		
+
 	public Reservas saveReservas(Reservas newInstance) {
 		return reservasService.saveReservas(newInstance);
 	}
@@ -240,6 +254,6 @@ public class Facade {
 	public void deleteReservas(long id) {
 		reservasService.deleteReservas(id);
 	}
-	
+
 
 }

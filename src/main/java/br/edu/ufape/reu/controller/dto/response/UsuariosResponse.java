@@ -1,10 +1,11 @@
 package br.edu.ufape.reu.controller.dto.response;
 
-import java.util.*;
-import java.math.*;
-import br.edu.ufape.reu.model.*;
-import br.edu.ufape.reu.config.SpringApplicationContext;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.Usuarios;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,13 +18,13 @@ public  class UsuariosResponse  {
 	private String nome;
 	private String email;
 	private String tipo;
-	private List<CertificacoesTreinamentoResponse> certificacoesTreinamento; 
+	private List<CertificacoesTreinamentoResponse> certificacoesTreinamento;
 
 
 
 	public UsuariosResponse(Usuarios obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");
-		modelMapper.map(obj, this);	
+		modelMapper.map(obj, this);
 	}
 
 }

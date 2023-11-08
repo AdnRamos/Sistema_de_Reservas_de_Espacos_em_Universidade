@@ -1,12 +1,11 @@
 package br.edu.ufape.reu.controller.dto.response;
 
-import java.util.*;
-import java.math.*;
 import java.time.LocalDateTime;
 
-import br.edu.ufape.reu.model.*;
-import br.edu.ufape.reu.config.SpringApplicationContext;
 import org.modelmapper.ModelMapper;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.RestricoesHorario;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +25,7 @@ public  class RestricoesHorarioResponse  {
 
 	public RestricoesHorarioResponse(RestricoesHorario obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");
-		modelMapper.map(obj, this);	
+		modelMapper.map(obj, this);
 	}
 
 }

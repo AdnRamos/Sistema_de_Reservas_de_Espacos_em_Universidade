@@ -1,12 +1,12 @@
 package br.edu.ufape.reu.controller.dto.response;
 
-import java.util.*;
-import java.math.*;
 import java.time.LocalDate;
+import java.util.List;
 
-import br.edu.ufape.reu.model.*;
-import br.edu.ufape.reu.config.SpringApplicationContext;
 import org.modelmapper.ModelMapper;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.CertificacoesTreinamento;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,13 +20,13 @@ public  class CertificacoesTreinamentoResponse  {
 	private String treinamentoID;
 	private LocalDate dataObtencao;
 	private LocalDate dataValidade;
-	private List<TreinamentosResponse> treinamentos; 
+	private List<TreinamentosResponse> treinamentos;
 
 
 
 	public CertificacoesTreinamentoResponse(CertificacoesTreinamento obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");
-		modelMapper.map(obj, this);	
+		modelMapper.map(obj, this);
 	}
 
 }

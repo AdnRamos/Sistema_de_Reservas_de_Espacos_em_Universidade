@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-SpringApiCrudApplication<Sistema_de_Reservas_de_Espacos_em_Universidade>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.edu.ufape.reu.SpringApiCrudApplication",
+      "projectName": "Sistema_de_Reservas_de_Espacos_em_Universidade",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SistemaDeReservasDeEspacosEmUniversidadeApplication<Sistema_de_Reservas_de_Espacos_em_Universidade>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.edu.reu.SistemaDeReservasDeEspacosEmUniversidadeApplication",
+      "projectName": "Sistema_de_Reservas_de_Espacos_em_Universidade",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

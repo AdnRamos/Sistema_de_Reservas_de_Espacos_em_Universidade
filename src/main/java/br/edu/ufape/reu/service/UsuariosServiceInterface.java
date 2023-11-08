@@ -11,8 +11,8 @@ public interface UsuariosServiceInterface {
 	void deleteUsuarios(Usuarios u);
 	void deleteUsuarios(long id);
 	List<Usuarios> getAllUsuarios();
-    
-    
 
-    
+
+
+
 }

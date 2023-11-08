@@ -1,20 +1,18 @@
 package br.edu.ufape.reu.controller.dto.request;
 
-import br.edu.ufape.reu.config.SpringApplicationContext;
-import br.edu.ufape.reu.model.*;
-
-import java.util.*;
-import java.math.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import jakarta.validation.constraints.*;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.Reservas;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Getter @Setter @NoArgsConstructor 
+@Getter @Setter @NoArgsConstructor
 public  class ReservasRequest  {
 	private Long id;
 	private Long UsuarioID;
@@ -23,7 +21,7 @@ public  class ReservasRequest  {
 	private LocalDateTime dataHoraTermino;
 	private String finalidade;
 	private String status;
-	private List<UsuariosRequest> usuarios; 
+	private List<UsuariosRequest> usuarios;
 
 
 	public Reservas convertToEntity() {

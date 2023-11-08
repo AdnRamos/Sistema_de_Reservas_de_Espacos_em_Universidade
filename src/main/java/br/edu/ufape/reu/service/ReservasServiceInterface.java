@@ -11,8 +11,8 @@ public interface ReservasServiceInterface {
 	void deleteReservas(Reservas u);
 	void deleteReservas(long id);
 	List<Reservas> getAllReservas();
-    
-    
 
-    
+
+
+
 }

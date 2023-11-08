@@ -1,10 +1,9 @@
 package br.edu.ufape.reu.controller.dto.response;
 
-import java.util.*;
-import java.math.*;
-import br.edu.ufape.reu.model.*;
-import br.edu.ufape.reu.config.SpringApplicationContext;
 import org.modelmapper.ModelMapper;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.Treinamentos;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +20,7 @@ public  class TreinamentosResponse  {
 
 	public TreinamentosResponse(Treinamentos obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");
-		modelMapper.map(obj, this);	
+		modelMapper.map(obj, this);
 	}
 
 }

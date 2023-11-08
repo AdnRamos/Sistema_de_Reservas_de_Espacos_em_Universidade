@@ -11,8 +11,8 @@ public interface EquipamentosServiceInterface {
 	void deleteEquipamentos(Equipamentos u);
 	void deleteEquipamentos(long id);
 	List<Equipamentos> getAllEquipamentos();
-    
-    
 
-    
+
+
+
 }

@@ -11,8 +11,8 @@ public interface CertificacoesTreinamentoServiceInterface {
 	void deleteCertificacoesTreinamento(CertificacoesTreinamento u);
 	void deleteCertificacoesTreinamento(long id);
 	List<CertificacoesTreinamento> getAllCertificacoesTreinamento();
-    
-    
 
-    
+
+
+
 }

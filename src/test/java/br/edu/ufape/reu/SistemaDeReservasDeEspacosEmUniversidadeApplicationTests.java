@@ -1,4 +1,4 @@
-package br.com.edu.reu;
+package br.edu.ufape.reu;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

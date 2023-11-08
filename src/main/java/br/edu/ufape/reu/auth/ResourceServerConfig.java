@@ -16,13 +16,13 @@ public class ResourceServerConfig  {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http
-		.authorizeHttpRequests(authz -> 
+		.authorizeHttpRequests(authz ->
 									authz
 										.requestMatchers("/security/**").permitAll()
 										.requestMatchers("/api-doc/**").permitAll()
 										.anyRequest().authenticated()
 		)
-		.oauth2ResourceServer(oauth2ResourceServer -> 
+		.oauth2ResourceServer(oauth2ResourceServer ->
 								oauth2ResourceServer.jwt((jwt) -> jwt
 									.jwtAuthenticationConverter(keycloakJwtAuthenticationConverter)
 								)

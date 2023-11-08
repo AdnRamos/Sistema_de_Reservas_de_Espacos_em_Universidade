@@ -11,8 +11,8 @@ public interface RestricoesHorarioServiceInterface {
 	void deleteRestricoesHorario(RestricoesHorario u);
 	void deleteRestricoesHorario(long id);
 	List<RestricoesHorario> getAllRestricoesHorario();
-    
-    
 
-    
+
+
+
 }

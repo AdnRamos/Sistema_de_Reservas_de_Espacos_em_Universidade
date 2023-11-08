@@ -1,19 +1,15 @@
 package br.edu.ufape.reu.controller.dto.request;
 
-import br.edu.ufape.reu.config.SpringApplicationContext;
-import br.edu.ufape.reu.model.*;
-
-import java.util.*;
-import java.math.*;
-
 import org.modelmapper.ModelMapper;
-import jakarta.validation.constraints.*;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.Treinamentos;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Getter @Setter @NoArgsConstructor 
+@Getter @Setter @NoArgsConstructor
 public  class TreinamentosRequest  {
 	private Long id;
 	private String descricao;

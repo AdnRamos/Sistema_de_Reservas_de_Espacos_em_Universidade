@@ -11,8 +11,8 @@ public interface TreinamentosServiceInterface {
 	void deleteTreinamentos(Treinamentos u);
 	void deleteTreinamentos(long id);
 	List<Treinamentos> getAllTreinamentos();
-    
-    
 
-    
+
+
+
 }

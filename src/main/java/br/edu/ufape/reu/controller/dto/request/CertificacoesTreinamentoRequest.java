@@ -1,26 +1,24 @@
 package br.edu.ufape.reu.controller.dto.request;
 
-import br.edu.ufape.reu.config.SpringApplicationContext;
-import br.edu.ufape.reu.model.*;
-
-import java.util.*;
-import java.math.*;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import jakarta.validation.constraints.*;
+
+import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.model.CertificacoesTreinamento;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@Getter @Setter @NoArgsConstructor 
+@Getter @Setter @NoArgsConstructor
 public  class CertificacoesTreinamentoRequest  {
 	private Long usuarioID;
 	private String treinamentoID;
 	private LocalDate dataObtencao;
 	private LocalDate dataValidade;
-	private List<TreinamentosRequest> treinamentos; 
+	private List<TreinamentosRequest> treinamentos;
 
 
 	public CertificacoesTreinamento convertToEntity() {

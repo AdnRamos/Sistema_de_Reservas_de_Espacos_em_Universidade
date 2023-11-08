@@ -11,8 +11,8 @@ public interface DepartamentosServiceInterface {
 	void deleteDepartamentos(Departamentos u);
 	void deleteDepartamentos(long id);
 	List<Departamentos> getAllDepartamentos();
-    
-    
 
-    
+
+
+
 }

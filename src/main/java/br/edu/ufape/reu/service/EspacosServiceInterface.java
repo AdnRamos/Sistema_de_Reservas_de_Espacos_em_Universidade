@@ -11,8 +11,8 @@ public interface EspacosServiceInterface {
 	void deleteEspacos(Espacos u);
 	void deleteEspacos(long id);
 	List<Espacos> getAllEspacos();
-    
-    
 
-    
+
+
+
 }
