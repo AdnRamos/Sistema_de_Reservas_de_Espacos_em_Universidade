@@ -82,9 +82,7 @@ classDiagram
 ```mermaid
 erDiagram
     DEPARTAMENTOS ||--o{ ESPACOS : contem
-    USUARIOS ||--o{ CERTIFICACOES-DE-TREINAMENTO : possui
     USUARIOS ||--o{ RESERVAS : realiza
-    TREINAMENTOS ||--o{ CERTIFICACOES-DE-TREINAMENTO : valida
     ESPACOS ||--o{ RESERVAS : reservado_por
     ESPACOS ||--o{ EQUIPAMENTOS : contem
     ESPACOS ||--o{ RESTRICOES-DE-HORARIO : possui
@@ -131,19 +129,6 @@ erDiagram
         String descricao "Descrição"
         int quantidadeDisponivel "Quantidade disponível"
         String status "Status"
-    }
-
-    TREINAMENTOS {
-        Long id PK "Identificador único"
-        String descricao "Descrição"
-        String espacosEquipamentosAssociados "Espaços/equipamentos associados"
-    }
-
-    CERTIFICACOES-DE-TREINAMENTO {
-        Long usuarioID FK "ID do usuário"
-        Long treinamentoID FK "ID do treinamento"
-        dateTime dataObtencao "Data de obtenção"
-        dateTime dataValidade "Data de validade"
     }
 
     RESTRICOES-DE-HORARIO {
