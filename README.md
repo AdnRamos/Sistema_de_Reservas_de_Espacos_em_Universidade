@@ -10,7 +10,6 @@ erDiagram
     DEPARTAMENTOS ||--o{ ESPACOS : contem
     USUARIOS ||--o{ RESERVAS : realiza
     PENALIDADES |o--o| RESERVAS : contem
-    PENALIDADES }o--o|  USUARIOS : possui
     ESPACOS ||--o{ RESERVAS : contem
     ESPACOS ||--o{ FOTOS : contem
     ESPACOS ||--o{ EQUIPAMENTOS : contem
