@@ -5,21 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.edu.ufape.reu.model.CertificacoesTreinamento;
 import br.edu.ufape.reu.model.Departamentos;
 import br.edu.ufape.reu.model.Equipamentos;
 import br.edu.ufape.reu.model.Espacos;
+import br.edu.ufape.reu.model.Fotos;
+import br.edu.ufape.reu.model.Penalidades;
 import br.edu.ufape.reu.model.Reservas;
-import br.edu.ufape.reu.model.RestricoesHorario;
-import br.edu.ufape.reu.model.Treinamentos;
+import br.edu.ufape.reu.model.Disponibilidade;
 import br.edu.ufape.reu.model.Usuarios;
-import br.edu.ufape.reu.service.CertificacoesTreinamentoService;
 import br.edu.ufape.reu.service.DepartamentosService;
 import br.edu.ufape.reu.service.EquipamentosService;
 import br.edu.ufape.reu.service.EspacosService;
+import br.edu.ufape.reu.service.FotosService;
+import br.edu.ufape.reu.service.PenalidadesService;
 import br.edu.ufape.reu.service.ReservasService;
 import br.edu.ufape.reu.service.RestricoesHorarioService;
-import br.edu.ufape.reu.service.TreinamentosService;
 import br.edu.ufape.reu.service.UsuariosService;
 
 @Service
@@ -53,32 +53,32 @@ public class Facade {
 	}
 
 
-	//RestricoesHorario--------------------------------------------------------------
+	//Disponibilidade--------------------------------------------------------------
 	@Autowired
-	private RestricoesHorarioService  restricoesHorarioService;
+	private RestricoesHorarioService  disponibilidadeService;
 
-	public RestricoesHorario saveRestricoesHorario(RestricoesHorario newInstance) {
-		return restricoesHorarioService.saveRestricoesHorario(newInstance);
+	public Disponibilidade saveRestricoesHorario(Disponibilidade newInstance) {
+		return disponibilidadeService.saveRestricoesHorario(newInstance);
 	}
 
-	public RestricoesHorario updateRestricoesHorario(RestricoesHorario transientObject) {
-		return restricoesHorarioService.updateRestricoesHorario(transientObject);
+	public Disponibilidade updateRestricoesHorario(Disponibilidade transientObject) {
+		return disponibilidadeService.updateRestricoesHorario(transientObject);
 	}
 
-	public RestricoesHorario findRestricoesHorarioById(long id) {
-		return restricoesHorarioService.findRestricoesHorarioById(id);
+	public Disponibilidade findRestricoesHorarioById(long id) {
+		return disponibilidadeService.findRestricoesHorarioById(id);
 	}
 
-	public List<RestricoesHorario> getAllRestricoesHorario() {
-		return restricoesHorarioService.getAllRestricoesHorario();
+	public List<Disponibilidade> getAllRestricoesHorario() {
+		return disponibilidadeService.getAllRestricoesHorario();
 	}
 
-	public void deleteRestricoesHorario(RestricoesHorario persistentObject) {
-		restricoesHorarioService.deleteRestricoesHorario(persistentObject);
+	public void deleteRestricoesHorario(Disponibilidade persistentObject) {
+		disponibilidadeService.deleteRestricoesHorario(persistentObject);
 	}
 
 	public void deleteRestricoesHorario(long id) {
-		restricoesHorarioService.deleteRestricoesHorario(id);
+		disponibilidadeService.deleteRestricoesHorario(id);
 	}
 
 
@@ -140,64 +140,6 @@ public class Facade {
 	}
 
 
-	//Treinamentos--------------------------------------------------------------
-	@Autowired
-	private TreinamentosService  treinamentosService;
-
-	public Treinamentos saveTreinamentos(Treinamentos newInstance) {
-		return treinamentosService.saveTreinamentos(newInstance);
-	}
-
-	public Treinamentos updateTreinamentos(Treinamentos transientObject) {
-		return treinamentosService.updateTreinamentos(transientObject);
-	}
-
-	public Treinamentos findTreinamentosById(long id) {
-		return treinamentosService.findTreinamentosById(id);
-	}
-
-	public List<Treinamentos> getAllTreinamentos() {
-		return treinamentosService.getAllTreinamentos();
-	}
-
-	public void deleteTreinamentos(Treinamentos persistentObject) {
-		treinamentosService.deleteTreinamentos(persistentObject);
-	}
-
-	public void deleteTreinamentos(long id) {
-		treinamentosService.deleteTreinamentos(id);
-	}
-
-
-	//CertificacoesTreinamento--------------------------------------------------------------
-	@Autowired
-	private CertificacoesTreinamentoService  certificacoesTreinamentoService;
-
-	public CertificacoesTreinamento saveCertificacoesTreinamento(CertificacoesTreinamento newInstance) {
-		return certificacoesTreinamentoService.saveCertificacoesTreinamento(newInstance);
-	}
-
-	public CertificacoesTreinamento updateCertificacoesTreinamento(CertificacoesTreinamento transientObject) {
-		return certificacoesTreinamentoService.updateCertificacoesTreinamento(transientObject);
-	}
-
-	public CertificacoesTreinamento findCertificacoesTreinamentoById(long id) {
-		return certificacoesTreinamentoService.findCertificacoesTreinamentoById(id);
-	}
-
-	public List<CertificacoesTreinamento> getAllCertificacoesTreinamento() {
-		return certificacoesTreinamentoService.getAllCertificacoesTreinamento();
-	}
-
-	public void deleteCertificacoesTreinamento(CertificacoesTreinamento persistentObject) {
-		certificacoesTreinamentoService.deleteCertificacoesTreinamento(persistentObject);
-	}
-
-	public void deleteCertificacoesTreinamento(long id) {
-		certificacoesTreinamentoService.deleteCertificacoesTreinamento(id);
-	}
-
-
 	//Espacos--------------------------------------------------------------
 	@Autowired
 	private EspacosService  espacosService;
@@ -229,7 +171,7 @@ public class Facade {
 
 	//Reservas--------------------------------------------------------------
 	@Autowired
-	private ReservasService  reservasService;
+	private ReservasService reservasService;
 
 	public Reservas saveReservas(Reservas newInstance) {
 		return reservasService.saveReservas(newInstance);
@@ -255,5 +197,57 @@ public class Facade {
 		reservasService.deleteReservas(id);
 	}
 
+	//Penalidades--------------------------------------------------------------
+	@Autowired
+	private PenalidadesService  penalidadesService;
+	
+	public Penalidades savePenalidades(Penalidades newInstance){
+		return penalidadesService.savePenalidades(newInstance);
+	};
 
+	public Penalidades updatePenalidades(Penalidades transientObject){
+		return penalidadesService.updatePenalidades(transientObject);
+	};
+
+	public Penalidades findPenalidadesById(long id){
+		return penalidadesService.findPenalidadesById(id);
+	};
+
+	public List<Penalidades> getAllPenalidades(){
+		return penalidadesService.getAllPenalidades();
+	};
+
+  public void deletePenalidades(Penalidades persistentObject){
+		penalidadesService.deletePenalidades(persistentObject);
+	};
+
+  public void deletePenalidades(long id){
+		reservasService.deleteReservas(id);
+	};
+
+	//Fotos--------------------------------------------------------------
+
+	@Autowired
+	private FotosService  fotosService;
+
+	public Fotos saveFotos(Fotos newInstance) {
+		return fotosService.saveFotos(newInstance);
+	}
+
+	public Fotos updateFotos(Fotos transientObject) {
+		return fotosService.updateFotos(transientObject);
+	}
+
+	public List<Fotos> getAllFotos() {
+		return fotosService.getAllFotos();
+	}	
+	public Fotos findFotosById(long id) {
+		return fotosService.findFotosById(id);
+	}
+	public void deleteFotos(Fotos persistentObject) {
+		fotosService.deleteFotos(persistentObject);
+	}
+	public void deleteFotos(long id) {
+		fotosService.deleteFotos(id);
+	}
 }

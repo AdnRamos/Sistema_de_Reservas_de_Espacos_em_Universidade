@@ -2,15 +2,15 @@ package br.edu.ufape.reu.service;
 
 import java.util.List;
 
-import br.edu.ufape.reu.model.RestricoesHorario;
+import br.edu.ufape.reu.model.Disponibilidade;
 
 public interface RestricoesHorarioServiceInterface {
-	RestricoesHorario saveRestricoesHorario(RestricoesHorario o);
-	RestricoesHorario findRestricoesHorarioById(long id);
-	RestricoesHorario updateRestricoesHorario(RestricoesHorario u);
-	void deleteRestricoesHorario(RestricoesHorario u);
+	Disponibilidade saveRestricoesHorario(Disponibilidade o);
+	Disponibilidade findRestricoesHorarioById(long id);
+	Disponibilidade updateRestricoesHorario(Disponibilidade u);
+	void deleteRestricoesHorario(Disponibilidade u);
 	void deleteRestricoesHorario(long id);
-	List<RestricoesHorario> getAllRestricoesHorario();
+	List<Disponibilidade> getAllRestricoesHorario();
 
 
 

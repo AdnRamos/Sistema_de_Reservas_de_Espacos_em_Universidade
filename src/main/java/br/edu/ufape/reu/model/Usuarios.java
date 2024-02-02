@@ -31,8 +31,6 @@ public  class Usuarios  {
 	private String nome;
 	private String email;
 	private String tipo;
-	@ManyToMany
-	@ToString.Exclude
-	private List<CertificacoesTreinamento> certificacoesTreinamento;
+
 
 }

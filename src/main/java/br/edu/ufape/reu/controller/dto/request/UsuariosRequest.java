@@ -17,7 +17,6 @@ public  class UsuariosRequest  {
 	private String nome;
 	private String email;
 	private String tipo;
-	private List<CertificacoesTreinamentoRequest> certificacoesTreinamento;
 
 
 	public Usuarios convertToEntity() {

@@ -43,6 +43,6 @@ public  class Espacos  {
 	private List<Reservas> reservas;
 	@ManyToMany
 	@ToString.Exclude
-	private List<RestricoesHorario> restricoesHorario;
+	private List<Disponibilidade> restricoesHorario;
 
 }

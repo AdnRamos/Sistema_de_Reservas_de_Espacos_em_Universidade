@@ -24,7 +24,6 @@ import br.edu.ufape.reu.model.Usuarios;
 import jakarta.validation.Valid;
 
 
-@CrossOrigin (origins = "http://localhost:8081/" )
 @RestController
 @RequestMapping("/api/v1/")
 public class UsuariosController {

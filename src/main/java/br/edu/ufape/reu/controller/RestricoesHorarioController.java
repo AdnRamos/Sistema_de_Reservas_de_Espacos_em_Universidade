@@ -20,11 +20,10 @@ import org.springframework.web.server.ResponseStatusException;
 import br.edu.ufape.reu.controller.dto.request.RestricoesHorarioRequest;
 import br.edu.ufape.reu.controller.dto.response.RestricoesHorarioResponse;
 import br.edu.ufape.reu.facade.Facade;
-import br.edu.ufape.reu.model.RestricoesHorario;
+import br.edu.ufape.reu.model.Disponibilidade;
 import jakarta.validation.Valid;
 
 
-@CrossOrigin (origins = "http://localhost:8081/" )
 @RestController
 @RequestMapping("/api/v1/")
 public class RestricoesHorarioController {
@@ -59,11 +58,11 @@ public class RestricoesHorarioController {
 	public RestricoesHorarioResponse updateRestricoesHorario(@PathVariable Long id, @Valid @RequestBody RestricoesHorarioRequest obj) {
 		try {
 			//RestricoesHorario o = obj.convertToEntity();
-			RestricoesHorario oldObject = facade.findRestricoesHorarioById(id);
+			Disponibilidade oldObject = facade.findRestricoesHorarioById(id);
 
-			TypeMap<RestricoesHorarioRequest, RestricoesHorario> typeMapper = modelMapper
-													.typeMap(RestricoesHorarioRequest.class, RestricoesHorario.class)
-													.addMappings(mapper -> mapper.skip(RestricoesHorario::setId));
+			TypeMap<RestricoesHorarioRequest, Disponibilidade> typeMapper = modelMapper
+													.typeMap(RestricoesHorarioRequest.class, Disponibilidade.class)
+													.addMappings(mapper -> mapper.skip(Disponibilidade::setId));
 
 
 			typeMapper.map(obj, oldObject);

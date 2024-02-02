@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import org.modelmapper.ModelMapper;
 
 import br.edu.ufape.reu.config.SpringApplicationContext;
-import br.edu.ufape.reu.model.RestricoesHorario;
+import br.edu.ufape.reu.model.Disponibilidade;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,9 +20,9 @@ public  class RestricoesHorarioRequest  {
 	private String mobile;
 
 
-	public RestricoesHorario convertToEntity() {
+	public Disponibilidade convertToEntity() {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");
-		RestricoesHorario obj = modelMapper.map(this, RestricoesHorario.class);
+		Disponibilidade obj = modelMapper.map(this, Disponibilidade.class);
 		return obj;
 	}
 

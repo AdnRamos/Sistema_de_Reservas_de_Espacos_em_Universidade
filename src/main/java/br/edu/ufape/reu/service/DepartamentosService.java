@@ -10,6 +10,7 @@ import br.edu.ufape.reu.repository.DepartamentosRepository;
 
 @Service
 public class DepartamentosService implements DepartamentosServiceInterface {
+	
 	@Autowired
 	private DepartamentosRepository repository;
 
@@ -45,7 +46,5 @@ public class DepartamentosService implements DepartamentosServiceInterface {
 		Departamentos obj = repository.findById(id).orElseThrow( () -> new RuntimeException("It doesn't exist Departamentos with id = " + id));
 		repository.delete(obj);
 	}
-
-
 
 }

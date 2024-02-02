@@ -1,7 +1,5 @@
 package br.edu.ufape.reu.controller.dto.response;
 
-import java.util.List;
-
 import org.modelmapper.ModelMapper;
 
 import br.edu.ufape.reu.config.SpringApplicationContext;
@@ -18,7 +16,6 @@ public  class UsuariosResponse  {
 	private String nome;
 	private String email;
 	private String tipo;
-	private List<CertificacoesTreinamentoResponse> certificacoesTreinamento;
 
 
 

@@ -24,7 +24,6 @@ import br.edu.ufape.reu.model.Reservas;
 import jakarta.validation.Valid;
 
 
-@CrossOrigin (origins = "http://localhost:8081/" )
 @RestController
 @RequestMapping("/api/v1/")
 public class ReservasController {
