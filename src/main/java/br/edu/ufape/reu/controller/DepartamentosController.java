@@ -60,12 +60,12 @@ public class DepartamentosController {
 			//Departamentos o = obj.convertToEntity();
 			Departamentos oldObject = facade.findDepartamentosById(id);
 
-			TypeMap<DepartamentosRequest, Departamentos> typeMapper = modelMapper
-													.typeMap(DepartamentosRequest.class, Departamentos.class)
-													.addMappings(mapper -> mapper.skip(Departamentos::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<DepartamentosRequest, Departamentos> typeMapper = modelMapper
+//													.typeMap(DepartamentosRequest.class, Departamentos.class)
+//													.addMappings(mapper -> mapper.skip(Departamentos::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new DepartamentosResponse(facade.updateDepartamentos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

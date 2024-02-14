@@ -36,7 +36,7 @@ public class EquipamentosService implements EquipamentosServiceInterface {
 
 	@Override
 	public void deleteEquipamentos(Equipamentos persistentObject){
-		this.deleteEquipamentos(persistentObject.getId());
+//		this.deleteEquipamentos(persistentObject.getId());
 
 	}
 

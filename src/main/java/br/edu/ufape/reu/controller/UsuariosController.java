@@ -60,12 +60,12 @@ public class UsuariosController {
 			//Usuarios o = obj.convertToEntity();
 			Usuarios oldObject = facade.findUsuariosById(id);
 
-			TypeMap<UsuariosRequest, Usuarios> typeMapper = modelMapper
-													.typeMap(UsuariosRequest.class, Usuarios.class)
-													.addMappings(mapper -> mapper.skip(Usuarios::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<UsuariosRequest, Usuarios> typeMapper = modelMapper
+//													.typeMap(UsuariosRequest.class, Usuarios.class)
+//													.addMappings(mapper -> mapper.skip(Usuarios::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new UsuariosResponse(facade.updateUsuarios(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

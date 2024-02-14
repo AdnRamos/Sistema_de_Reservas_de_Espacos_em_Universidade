@@ -59,12 +59,12 @@ public class FotosController {
       //Fotos o = obj.convertToEntity();
       Fotos oldObject = facade.findFotosById(id);
       
-			TypeMap<FotosRequest, Fotos> typeMapper = modelMapper
-													.typeMap(FotosRequest.class, Fotos.class)
-													.addMappings(mapper -> mapper.skip(Fotos::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<FotosRequest, Fotos> typeMapper = modelMapper
+//													.typeMap(FotosRequest.class, Fotos.class)
+//													.addMappings(mapper -> mapper.skip(Fotos::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
       return new FotosResponse(facade.updateFotos(oldObject));
     } catch (RuntimeException ex) {
       throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

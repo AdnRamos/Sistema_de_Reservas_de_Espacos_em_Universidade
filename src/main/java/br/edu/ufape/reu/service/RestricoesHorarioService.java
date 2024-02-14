@@ -36,7 +36,7 @@ public class RestricoesHorarioService implements RestricoesHorarioServiceInterfa
 
 	@Override
 	public void deleteRestricoesHorario(Disponibilidade persistentObject){
-		this.deleteRestricoesHorario(persistentObject.getId());
+//		this.deleteRestricoesHorario(persistentObject.getId());
 
 	}
 

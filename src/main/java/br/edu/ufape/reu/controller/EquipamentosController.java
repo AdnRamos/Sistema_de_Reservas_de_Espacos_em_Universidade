@@ -60,12 +60,12 @@ public class EquipamentosController {
 			//Equipamentos o = obj.convertToEntity();
 			Equipamentos oldObject = facade.findEquipamentosById(id);
 
-			TypeMap<EquipamentosRequest, Equipamentos> typeMapper = modelMapper
-													.typeMap(EquipamentosRequest.class, Equipamentos.class)
-													.addMappings(mapper -> mapper.skip(Equipamentos::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<EquipamentosRequest, Equipamentos> typeMapper = modelMapper
+//													.typeMap(EquipamentosRequest.class, Equipamentos.class)
+//													.addMappings(mapper -> mapper.skip(Equipamentos::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new EquipamentosResponse(facade.updateEquipamentos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

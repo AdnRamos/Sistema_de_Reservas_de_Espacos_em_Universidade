@@ -36,7 +36,7 @@ public class PenalidadesService implements PenalidadesServicesInterface{
 
   @Override
   public void deletePenalidades(Penalidades persistentObject){
-    this.deletePenalidades(persistentObject.getId());
+//    this.deletePenalidades(persistentObject.getId());
 
   }
 

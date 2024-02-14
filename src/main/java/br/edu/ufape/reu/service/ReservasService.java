@@ -36,7 +36,7 @@ public class ReservasService implements ReservasServiceInterface {
 
 	@Override
 	public void deleteReservas(Reservas persistentObject){
-		this.deleteReservas(persistentObject.getId());
+//		this.deleteReservas(persistentObject.getId());
 
 	}
 

@@ -36,7 +36,7 @@ public class UsuariosService implements UsuariosServiceInterface {
 
 	@Override
 	public void deleteUsuarios(Usuarios persistentObject){
-		this.deleteUsuarios(persistentObject.getId());
+//		this.deleteUsuarios(persistentObject.getId());
 
 	}
 

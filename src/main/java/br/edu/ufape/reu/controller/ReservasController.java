@@ -60,12 +60,12 @@ public class ReservasController {
 			//Reservas o = obj.convertToEntity();
 			Reservas oldObject = facade.findReservasById(id);
 
-			TypeMap<ReservasRequest, Reservas> typeMapper = modelMapper
-													.typeMap(ReservasRequest.class, Reservas.class)
-													.addMappings(mapper -> mapper.skip(Reservas::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<ReservasRequest, Reservas> typeMapper = modelMapper
+//													.typeMap(ReservasRequest.class, Reservas.class)
+//													.addMappings(mapper -> mapper.skip(Reservas::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new ReservasResponse(facade.updateReservas(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

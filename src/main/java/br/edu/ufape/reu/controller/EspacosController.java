@@ -59,12 +59,12 @@ public class EspacosController {
 			//Espacos o = obj.convertToEntity();
 			Espacos oldObject = facade.findEspacosById(id);
 
-			TypeMap<EspacosRequest, Espacos> typeMapper = modelMapper
-													.typeMap(EspacosRequest.class, Espacos.class)
-													.addMappings(mapper -> mapper.skip(Espacos::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<EspacosRequest, Espacos> typeMapper = modelMapper
+//													.typeMap(EspacosRequest.class, Espacos.class)
+//													.addMappings(mapper -> mapper.skip(Espacos::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new EspacosResponse(facade.updateEspacos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

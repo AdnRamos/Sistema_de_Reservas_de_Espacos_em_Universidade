@@ -60,12 +60,12 @@ public class RestricoesHorarioController {
 			//RestricoesHorario o = obj.convertToEntity();
 			Disponibilidade oldObject = facade.findRestricoesHorarioById(id);
 
-			TypeMap<RestricoesHorarioRequest, Disponibilidade> typeMapper = modelMapper
-													.typeMap(RestricoesHorarioRequest.class, Disponibilidade.class)
-													.addMappings(mapper -> mapper.skip(Disponibilidade::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<RestricoesHorarioRequest, Disponibilidade> typeMapper = modelMapper
+//													.typeMap(RestricoesHorarioRequest.class, Disponibilidade.class)
+//													.addMappings(mapper -> mapper.skip(Disponibilidade::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new RestricoesHorarioResponse(facade.updateRestricoesHorario(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

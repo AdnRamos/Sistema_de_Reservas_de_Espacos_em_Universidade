@@ -37,8 +37,7 @@ public class DepartamentosService implements DepartamentosServiceInterface {
 
 	@Override
 	public void deleteDepartamentos(Departamentos persistentObject){
-		this.deleteDepartamentos(persistentObject.getId());
-
+//		this.deleteDepartamentos(persistentObject.getId());
 	}
 
 	@Override

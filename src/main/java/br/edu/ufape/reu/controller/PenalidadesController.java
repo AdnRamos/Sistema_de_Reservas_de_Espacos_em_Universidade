@@ -45,7 +45,7 @@ public class PenalidadesController {
     return new PenalidadesResponse(facade.savePenalidades(newObj.convertToEntity()));
   }
 	
-	@GetMapping("espacos/{id}")
+	@GetMapping("penalidades/{id}")
 	public PenalidadesResponse getPenalidadesById(@PathVariable Long id) {
 		try {
 			return new PenalidadesResponse(facade.findPenalidadesById(id));
@@ -54,18 +54,18 @@ public class PenalidadesController {
 		}
 	}
 
-	@PatchMapping("espacos/{id}")
-	public PenalidadesResponse updateEspacos(@PathVariable Long id, @Valid @RequestBody PenalidadesRequest obj) {
+	@PatchMapping("penalidades/{id}")
+	public PenalidadesResponse updatePenalidades(@PathVariable Long id, @Valid @RequestBody PenalidadesRequest obj) {
 		try {
 			//Penalidades o = obj.convertToEntity();
 			Penalidades oldObject = facade.findPenalidadesById(id);
 
-			TypeMap<PenalidadesRequest, Penalidades> typeMapper = modelMapper
-													.typeMap(PenalidadesRequest.class, Penalidades.class)
-													.addMappings(mapper -> mapper.skip(Penalidades::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<PenalidadesRequest, Penalidades> typeMapper = modelMapper
+//													.typeMap(PenalidadesRequest.class, Penalidades.class)
+//													.addMappings(mapper -> mapper.skip(Penalidades::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
 			return new PenalidadesResponse(facade.updatePenalidades(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
@@ -73,7 +73,7 @@ public class PenalidadesController {
 
 	}
 
-	@DeleteMapping("espacos/{id}")
+	@DeleteMapping("penalidades/{id}")
 	public String deletePenalidades(@PathVariable Long id) {
 		try {
 			facade.deletePenalidades(id);
