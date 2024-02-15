@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +23,6 @@ import br.edu.ufape.reu.controller.dto.response.DepartamentosResponse;
 import br.edu.ufape.reu.facade.Facade;
 import br.edu.ufape.reu.model.Departamentos;
 import jakarta.validation.Valid;
-
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -50,7 +50,7 @@ public class DepartamentosController {
 		try {
 			return new DepartamentosResponse(facade.findDepartamentosById(id));
 		} catch (RuntimeException ex) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Departamentos " + id + " not found.");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Departamento " + id + " not found.");
 		}
 	}
 
@@ -59,13 +59,16 @@ public class DepartamentosController {
 		try {
 			//Departamentos o = obj.convertToEntity();
 			Departamentos oldObject = facade.findDepartamentosById(id);
+//
+//			ModelMapper modelMapper = new ModelMapper();
+//			modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+			
+			TypeMap<DepartamentosRequest, Departamentos> typeMapper = modelMapper
+													.typeMap(DepartamentosRequest.class, Departamentos.class)
+													.addMappings(mapper -> mapper.skip(Departamentos::setId));
 
-//			TypeMap<DepartamentosRequest, Departamentos> typeMapper = modelMapper
-//													.typeMap(DepartamentosRequest.class, Departamentos.class)
-//													.addMappings(mapper -> mapper.skip(Departamentos::setId));
-//
-//
-//			typeMapper.map(obj, oldObject);
+
+			typeMapper.map(obj, oldObject);
 			return new DepartamentosResponse(facade.updateDepartamentos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
