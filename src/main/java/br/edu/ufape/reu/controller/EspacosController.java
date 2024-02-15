@@ -56,15 +56,17 @@ public class EspacosController {
 	@PatchMapping("espacos/{id}")
 	public EspacosResponse updateEspacos(@PathVariable Long id, @Valid @RequestBody EspacosRequest obj) {
 		try {
-			//Espacos o = obj.convertToEntity();
 			Espacos oldObject = facade.findEspacosById(id);
+			int oldCapacity = oldObject.getCapacidade();
 
-//			TypeMap<EspacosRequest, Espacos> typeMapper = modelMapper
-//													.typeMap(EspacosRequest.class, Espacos.class)
-//													.addMappings(mapper -> mapper.skip(Espacos::setId));
-//
-//
-//			typeMapper.map(obj, oldObject);
+			TypeMap<EspacosRequest, Espacos> typeMapper = modelMapper
+													.typeMap(EspacosRequest.class, Espacos.class)
+													.addMappings(mapper -> mapper.skip(Espacos::setId))
+													.addMappings(mapper -> mapper.skip(Espacos::setDepartamento));
+			typeMapper.map(obj, oldObject);
+			if(obj.getCapacidade() == 0) {
+				oldObject.setCapacidade(oldCapacity);
+			}
 			return new EspacosResponse(facade.updateEspacos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
@@ -76,7 +78,7 @@ public class EspacosController {
 	public String deleteEspacos(@PathVariable Long id) {
 		try {
 			facade.deleteEspacos(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}

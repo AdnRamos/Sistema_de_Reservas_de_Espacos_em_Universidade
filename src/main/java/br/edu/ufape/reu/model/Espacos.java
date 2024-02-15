@@ -3,6 +3,8 @@ package br.edu.ufape.reu.model;
 import java.util.List;
 
 import br.edu.ufape.reu.enums.TipoEspaco;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,6 +18,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,6 +39,8 @@ public class Espacos  {
 	private int capacidade;
 	private String regrasEspecificas;
 	@Enumerated(EnumType.ORDINAL)
+	@NotNull
+	@Column(nullable = false)
 	private TipoEspaco tipo;
 	
 	//analisar
@@ -50,7 +55,7 @@ public class Espacos  {
 	@JoinColumn(name="departamento_id")
 	private Departamentos departamento;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@ToString.Exclude
 	@JoinColumn(name="espaco_id")
 	private List<Fotos> fotos;

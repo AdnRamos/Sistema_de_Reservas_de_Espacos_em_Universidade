@@ -145,6 +145,9 @@ public class Facade {
 	private EspacosService  espacosService;
 
 	public Espacos saveEspacos(Espacos newInstance) {
+		if(newInstance.getFotos()!= null && !newInstance.getFotos().isEmpty()) {
+			
+		}
 		return espacosService.saveEspacos(newInstance);
 	}
 

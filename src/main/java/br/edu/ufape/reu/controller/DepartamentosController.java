@@ -57,11 +57,7 @@ public class DepartamentosController {
 	@PatchMapping("departamentos/{id}")
 	public DepartamentosResponse updateDepartamentos(@PathVariable Long id, @Valid @RequestBody DepartamentosRequest obj) {
 		try {
-			//Departamentos o = obj.convertToEntity();
 			Departamentos oldObject = facade.findDepartamentosById(id);
-//
-//			ModelMapper modelMapper = new ModelMapper();
-//			modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 			
 			TypeMap<DepartamentosRequest, Departamentos> typeMapper = modelMapper
 													.typeMap(DepartamentosRequest.class, Departamentos.class)
@@ -80,7 +76,7 @@ public class DepartamentosController {
 	public String deleteDepartamentos(@PathVariable Long id) {
 		try {
 			facade.deleteDepartamentos(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}
