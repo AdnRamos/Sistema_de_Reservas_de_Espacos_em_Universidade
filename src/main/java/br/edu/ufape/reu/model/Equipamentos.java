@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,4 +28,8 @@ public  class Equipamentos  {
 	private String nome;
 	private String descricao;
 	private boolean status;
+	
+	@ManyToOne
+	@JoinColumn(name="espaco_id")
+	private Espacos espaco;
 }

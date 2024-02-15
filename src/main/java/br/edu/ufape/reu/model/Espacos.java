@@ -60,9 +60,8 @@ public class Espacos  {
 	@JoinColumn(name="espaco_id")
 	private List<Fotos> fotos;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "espaco")
 	@ToString.Exclude
-	@JoinColumn(name="espaco_id")
 	private List<Equipamentos> equipamentos;
 	
 	@OneToMany

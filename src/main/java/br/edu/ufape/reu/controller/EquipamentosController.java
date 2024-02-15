@@ -21,6 +21,7 @@ import br.edu.ufape.reu.controller.dto.request.EquipamentosRequest;
 import br.edu.ufape.reu.controller.dto.response.EquipamentosResponse;
 import br.edu.ufape.reu.facade.Facade;
 import br.edu.ufape.reu.model.Equipamentos;
+import br.edu.ufape.reu.model.Espacos;
 import jakarta.validation.Valid;
 
 
@@ -57,15 +58,14 @@ public class EquipamentosController {
 	@PatchMapping("equipamentos/{id}")
 	public EquipamentosResponse updateEquipamentos(@PathVariable Long id, @Valid @RequestBody EquipamentosRequest obj) {
 		try {
-			//Equipamentos o = obj.convertToEntity();
 			Equipamentos oldObject = facade.findEquipamentosById(id);
 
-//			TypeMap<EquipamentosRequest, Equipamentos> typeMapper = modelMapper
-//													.typeMap(EquipamentosRequest.class, Equipamentos.class)
-//													.addMappings(mapper -> mapper.skip(Equipamentos::setId));
-//
-//
-//			typeMapper.map(obj, oldObject);
+			TypeMap<EquipamentosRequest, Equipamentos> typeMapper = modelMapper
+													.typeMap(EquipamentosRequest.class, Equipamentos.class)
+													.addMappings(mapper -> mapper.skip(Equipamentos::setId))
+													.addMappings(mapper -> mapper.skip(Equipamentos::setEspaco));
+
+			typeMapper.map(obj, oldObject);
 			return new EquipamentosResponse(facade.updateEquipamentos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

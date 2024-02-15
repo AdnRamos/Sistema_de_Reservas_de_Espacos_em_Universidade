@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 
 import br.edu.ufape.reu.config.SpringApplicationContext;
 import br.edu.ufape.reu.model.Equipamentos;
+import br.edu.ufape.reu.model.Espacos;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,8 +15,8 @@ public  class EquipamentosRequest  {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private int quantidadeDisponivel;
 	private String status;
+	private Espacos espaco;
 
 
 	public Equipamentos convertToEntity() {
