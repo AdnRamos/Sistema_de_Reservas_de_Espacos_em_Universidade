@@ -23,6 +23,5 @@ public class Fotos {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   private Long id;
-  private Long idEspaco;
-  private String imgageURL;
+  private String url;
 }

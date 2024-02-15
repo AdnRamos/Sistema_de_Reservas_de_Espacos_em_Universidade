@@ -27,7 +27,5 @@ public  class Equipamentos  {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private int quantidadeDisponivel;
 	private String status;
-
 }

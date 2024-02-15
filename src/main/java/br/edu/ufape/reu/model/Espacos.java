@@ -8,7 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,14 +20,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public  class Espacos  {
+public class Espacos  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
@@ -31,18 +32,33 @@ public  class Espacos  {
 	private String nome;
 	private String tipo;
 	private int capacidade;
-	private String equipamentosDisponiveis;
-	private String fotos;
-	private String horarioDisponivel;
-	private Long departamentoID;
-	@ManyToMany
+	private String regrasEspecificas;
+	
+	//analisar
+		private String horarioDisponivel;
+	
+		@ManyToMany
+		@ToString.Exclude
+		private List<Disponibilidade> restricoesHorario;
+	//
+	
+	@ManyToOne
+	@JoinColumn(name="departamento_id")
+	private Departamentos departamento;
+	
+	@OneToMany
 	@ToString.Exclude
+	@JoinColumn(name="espaco_id")
+	private List<Fotos> fotos;
+	
+	@OneToMany
+	@ToString.Exclude
+	@JoinColumn(name="espaco_id")
 	private List<Equipamentos> equipamentos;
-	@ManyToMany
+	
+	@OneToMany
 	@ToString.Exclude
+	@JoinColumn(name="espaco_id")
 	private List<Reservas> reservas;
-	@ManyToMany
-	@ToString.Exclude
-	private List<Disponibilidade> restricoesHorario;
 
 }
