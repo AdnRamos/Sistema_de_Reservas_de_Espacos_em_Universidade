@@ -2,7 +2,10 @@ package br.edu.ufape.reu.model;
 
 import java.util.List;
 
+import br.edu.ufape.reu.enums.TipoEspaco;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,9 +33,10 @@ public class Espacos  {
 	@EqualsAndHashCode.Include
 	private Long id;
 	private String nome;
-	private String tipo;
 	private int capacidade;
 	private String regrasEspecificas;
+	@Enumerated(EnumType.ORDINAL)
+	private TipoEspaco tipo;
 	
 	//analisar
 		private String horarioDisponivel;

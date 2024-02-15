@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
@@ -27,5 +25,5 @@ public  class Equipamentos  {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private String status;
+	private boolean status;
 }

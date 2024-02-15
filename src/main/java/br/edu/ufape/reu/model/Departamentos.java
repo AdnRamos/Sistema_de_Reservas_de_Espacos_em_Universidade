@@ -2,6 +2,7 @@ package br.edu.ufape.reu.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +28,7 @@ public class Departamentos  {
 	private Long id;
 	private String nome;
 	private String responsavel;
+	@Column(length = 11)
 	private String contato;
 	
 	@OneToMany(mappedBy = "departamento")

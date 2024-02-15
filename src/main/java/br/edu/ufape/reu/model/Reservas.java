@@ -1,9 +1,14 @@
 package br.edu.ufape.reu.model;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
+import br.edu.ufape.reu.enums.StatusReserva;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,10 +35,16 @@ public class Reservas  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
-	private LocalDateTime dataHoraInicio;
-	private LocalDateTime dataHoraTermino;
 	private String finalidade;
-	private String status;
+	
+	@Column(columnDefinition = "TIME")
+	private LocalTime dataHoraInicio;
+	
+	@Column(columnDefinition = "TIME")
+	private LocalTime dataHoraTermino;
+	
+	@Enumerated(EnumType.ORDINAL)
+	private StatusReserva status;
 	
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
