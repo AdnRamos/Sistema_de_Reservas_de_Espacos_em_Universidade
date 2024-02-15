@@ -57,15 +57,13 @@ public class UsuariosController {
 	@PatchMapping("usuarios/{id}")
 	public UsuariosResponse updateUsuarios(@PathVariable Long id, @Valid @RequestBody UsuariosRequest obj) {
 		try {
-			//Usuarios o = obj.convertToEntity();
 			Usuarios oldObject = facade.findUsuariosById(id);
 
-//			TypeMap<UsuariosRequest, Usuarios> typeMapper = modelMapper
-//													.typeMap(UsuariosRequest.class, Usuarios.class)
-//													.addMappings(mapper -> mapper.skip(Usuarios::setId));
-//
-//
-//			typeMapper.map(obj, oldObject);
+			TypeMap<UsuariosRequest, Usuarios> typeMapper = modelMapper
+													.typeMap(UsuariosRequest.class, Usuarios.class)
+													.addMappings(mapper -> mapper.skip(Usuarios::setId));
+
+			typeMapper.map(obj, oldObject);
 			return new UsuariosResponse(facade.updateUsuarios(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
@@ -77,7 +75,7 @@ public class UsuariosController {
 	public String deleteUsuarios(@PathVariable Long id) {
 		try {
 			facade.deleteUsuarios(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}

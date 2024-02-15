@@ -77,7 +77,7 @@ public class EquipamentosController {
 	public String deleteEquipamentos(@PathVariable Long id) {
 		try {
 			facade.deleteEquipamentos(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}

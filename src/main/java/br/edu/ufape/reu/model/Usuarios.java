@@ -33,7 +33,9 @@ public class Usuarios  {
 	@EqualsAndHashCode.Include
 	private Long id;
 	private String nome;
-	private String contato;
+	
+	@Column(length = 11)
+	private String telefone;
 	
 	@Column(length = 50)
 	private String email;
