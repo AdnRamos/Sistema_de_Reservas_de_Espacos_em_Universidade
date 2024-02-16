@@ -64,9 +64,8 @@ public class Espacos  {
 	@ToString.Exclude
 	private List<Equipamentos> equipamentos;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "espaco")
 	@ToString.Exclude
-	@JoinColumn(name="espaco_id")
 	private List<Reservas> reservas;
 
 }

@@ -1,5 +1,6 @@
 package br.edu.ufape.reu.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -37,6 +38,9 @@ public class Reservas  {
 	private Long id;
 	private String finalidade;
 	
+	@Column(columnDefinition = "DATE")
+	private LocalDate data;
+	
 	@Column(columnDefinition = "TIME")
 	private LocalTime dataHoraInicio;
 	
@@ -49,6 +53,10 @@ public class Reservas  {
 	@ManyToOne
 	@JoinColumn(name="usuario_id")
 	private Usuarios usuario;
+	
+	@ManyToOne
+	@JoinColumn(name="espaco_id")
+	private Espacos espaco;
 	
 	@OneToOne
 	private Penalidades penalidade;

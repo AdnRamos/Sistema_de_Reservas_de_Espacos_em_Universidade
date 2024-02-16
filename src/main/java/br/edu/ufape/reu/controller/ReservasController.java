@@ -57,15 +57,16 @@ public class ReservasController {
 	@PatchMapping("reservas/{id}")
 	public ReservasResponse updateReservas(@PathVariable Long id, @Valid @RequestBody ReservasRequest obj) {
 		try {
-			//Reservas o = obj.convertToEntity();
 			Reservas oldObject = facade.findReservasById(id);
 
-//			TypeMap<ReservasRequest, Reservas> typeMapper = modelMapper
-//													.typeMap(ReservasRequest.class, Reservas.class)
-//													.addMappings(mapper -> mapper.skip(Reservas::setId));
-//
-//
-//			typeMapper.map(obj, oldObject);
+			TypeMap<ReservasRequest, Reservas> typeMapper = modelMapper
+													.typeMap(ReservasRequest.class, Reservas.class)
+													.addMappings(mapper -> mapper.skip(Reservas::setId))
+													.addMappings(mapper -> mapper.skip(Reservas::setUsuario))
+													.addMappings(mapper -> mapper.skip(Reservas::setEspaco));
+
+
+			typeMapper.map(obj, oldObject);
 			return new ReservasResponse(facade.updateReservas(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
@@ -77,7 +78,7 @@ public class ReservasController {
 	public String deleteReservas(@PathVariable Long id) {
 		try {
 			facade.deleteReservas(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}
