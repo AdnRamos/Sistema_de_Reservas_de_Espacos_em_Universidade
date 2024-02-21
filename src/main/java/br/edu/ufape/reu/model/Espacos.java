@@ -35,7 +35,9 @@ public class Espacos  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
+	@Column(nullable = false)
 	private String nome;
+	@Column(nullable = false)
 	private int capacidade;
 	private String regrasEspecificas;
 	@Enumerated(EnumType.ORDINAL)
@@ -44,12 +46,12 @@ public class Espacos  {
 	private TipoEspaco tipo;
 	
 	@ManyToOne
-	@JoinColumn(name="departamento_id")
+	@JoinColumn(name="departamento_id", nullable = false)
 	private Departamentos departamento;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@ToString.Exclude
-	@JoinColumn(name="espaco_id")
+	@JoinColumn(name="espaco_id", nullable = false)
 	private List<Fotos> fotos;
 	
 	@OneToMany(mappedBy = "espaco")

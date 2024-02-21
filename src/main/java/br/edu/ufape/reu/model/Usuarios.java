@@ -32,6 +32,7 @@ public class Usuarios  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
+	@Column(nullable = false)
 	private String nome;
 	
 	@Column(length = 11)
@@ -41,6 +42,7 @@ public class Usuarios  {
 	private String email;
 	
 	@Enumerated(EnumType.ORDINAL)
+	@Column(nullable = false)
 	private TipoUsuario tipo;
 	
 	@OneToMany(mappedBy = "usuario")

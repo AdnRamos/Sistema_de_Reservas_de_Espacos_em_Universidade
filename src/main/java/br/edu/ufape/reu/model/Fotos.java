@@ -1,5 +1,6 @@
 package br.edu.ufape.reu.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,5 +24,6 @@ public class Fotos {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @EqualsAndHashCode.Include
   private Long id;
+  @Column(nullable = false)
   private String url;
 }

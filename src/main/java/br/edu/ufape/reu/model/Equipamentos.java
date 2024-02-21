@@ -1,5 +1,6 @@
 package br.edu.ufape.reu.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,11 +26,12 @@ public  class Equipamentos  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
+	@Column(nullable = false)
 	private String nome;
 	private String descricao;
 	private boolean status;
 	
 	@ManyToOne
-	@JoinColumn(name="espaco_id")
+	@JoinColumn(name="espaco_id",nullable = false)
 	private Espacos espaco;
 }

@@ -39,27 +39,28 @@ public class Reservas  {
 	private Long id;
 	private String finalidade;
 	
-	@Column(columnDefinition = "DATE")
+	@Column(columnDefinition = "DATE", nullable = false)
 	private LocalDate data;
 	
-	@Column(columnDefinition = "TIME")
+	@Column(columnDefinition = "TIME", nullable = false)
 	private LocalTime dataHoraInicio;
 	
-	@Column(columnDefinition = "TIME")
+	@Column(columnDefinition = "TIME", nullable = false)
 	private LocalTime dataHoraTermino;
 	
 	@Enumerated(EnumType.ORDINAL)
+	@Column(nullable = false)
 	private StatusReserva status;
 	
 	@ManyToOne
-	@JoinColumn(name="usuario_id")
+	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuarios usuario;
 	
 	@ManyToOne
-	@JoinColumn(name="espaco_id")
+	@JoinColumn(name="espaco_id", nullable = false)
 	private Espacos espaco;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="penalidade_id")
+	@JoinColumn(name="penalidade_id", nullable = false)
 	private Penalidades penalidade;
 }
