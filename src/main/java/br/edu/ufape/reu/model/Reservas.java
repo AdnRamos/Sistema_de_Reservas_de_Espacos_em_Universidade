@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import br.edu.ufape.reu.enums.StatusReserva;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -58,6 +59,7 @@ public class Reservas  {
 	@JoinColumn(name="espaco_id")
 	private Espacos espaco;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="penalidade_id")
 	private Penalidades penalidade;
 }

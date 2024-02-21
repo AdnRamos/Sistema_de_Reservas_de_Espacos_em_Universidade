@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 
 import br.edu.ufape.reu.config.SpringApplicationContext;
 import br.edu.ufape.reu.enums.StatusReserva;
+import br.edu.ufape.reu.model.Penalidades;
 import br.edu.ufape.reu.model.Reservas;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public  class ReservasResponse  {
 	private LocalDateTime dataHoraTermino;
 	private String finalidade;
 	private StatusReserva status;
+	private Penalidades penalidade;
 
 	public ReservasResponse(Reservas obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");

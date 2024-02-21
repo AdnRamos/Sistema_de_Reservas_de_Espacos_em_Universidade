@@ -13,7 +13,7 @@ import lombok.Setter;
 public class PenalidadesRequest {
 
   private Long id;
-  private Long idReserva;
+  private Reservas reserva;
   private String justificativa;
   
 

@@ -46,9 +46,4 @@ public class Usuarios  {
 	@OneToMany(mappedBy = "usuario")
 	@ToString.Exclude
 	private List<Reservas> reservas;
-	
-	@OneToMany
-	@ToString.Exclude
-	@JoinColumn(name="usuario_id")
-	private List<Penalidades> penalidades;
 }
