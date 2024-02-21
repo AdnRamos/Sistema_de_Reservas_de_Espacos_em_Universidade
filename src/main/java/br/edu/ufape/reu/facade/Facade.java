@@ -11,7 +11,6 @@ import br.edu.ufape.reu.model.Espacos;
 import br.edu.ufape.reu.model.Fotos;
 import br.edu.ufape.reu.model.Penalidades;
 import br.edu.ufape.reu.model.Reservas;
-import br.edu.ufape.reu.model.Disponibilidade;
 import br.edu.ufape.reu.model.Usuarios;
 import br.edu.ufape.reu.service.DepartamentosService;
 import br.edu.ufape.reu.service.EquipamentosService;
@@ -19,7 +18,6 @@ import br.edu.ufape.reu.service.EspacosService;
 import br.edu.ufape.reu.service.FotosService;
 import br.edu.ufape.reu.service.PenalidadesService;
 import br.edu.ufape.reu.service.ReservasService;
-import br.edu.ufape.reu.service.RestricoesHorarioService;
 import br.edu.ufape.reu.service.UsuariosService;
 
 @Service
@@ -50,35 +48,6 @@ public class Facade {
 
 	public void deleteUsuarios(long id) {
 		usuariosService.deleteUsuarios(id);
-	}
-
-
-	//Disponibilidade--------------------------------------------------------------
-	@Autowired
-	private RestricoesHorarioService  disponibilidadeService;
-
-	public Disponibilidade saveRestricoesHorario(Disponibilidade newInstance) {
-		return disponibilidadeService.saveRestricoesHorario(newInstance);
-	}
-
-	public Disponibilidade updateRestricoesHorario(Disponibilidade transientObject) {
-		return disponibilidadeService.updateRestricoesHorario(transientObject);
-	}
-
-	public Disponibilidade findRestricoesHorarioById(long id) {
-		return disponibilidadeService.findRestricoesHorarioById(id);
-	}
-
-	public List<Disponibilidade> getAllRestricoesHorario() {
-		return disponibilidadeService.getAllRestricoesHorario();
-	}
-
-	public void deleteRestricoesHorario(Disponibilidade persistentObject) {
-		disponibilidadeService.deleteRestricoesHorario(persistentObject);
-	}
-
-	public void deleteRestricoesHorario(long id) {
-		disponibilidadeService.deleteRestricoesHorario(id);
 	}
 
 

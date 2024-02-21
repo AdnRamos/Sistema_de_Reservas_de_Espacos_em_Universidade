@@ -12,8 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Getter @Setter @NoArgsConstructor
 public  class EspacosResponse  {
 	private Long id;
@@ -21,13 +19,9 @@ public  class EspacosResponse  {
 	private TipoEspaco tipo;
 	private int capacidade;
 	private List<Fotos> fotos;
-	private String horarioDisponivel;
 	private Long departamentoID;
 	private List<EquipamentosResponse> equipamentos;
 	private List<ReservasResponse> reservas;
-	private List<RestricoesHorarioResponse> restricoesHorario;
-
-
 
 	public EspacosResponse(Espacos obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");

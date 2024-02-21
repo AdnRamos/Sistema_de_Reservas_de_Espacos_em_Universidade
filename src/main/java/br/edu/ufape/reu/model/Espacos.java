@@ -43,14 +43,6 @@ public class Espacos  {
 	@Column(nullable = false)
 	private TipoEspaco tipo;
 	
-	//analisar
-		private String horarioDisponivel;
-	
-		@ManyToMany
-		@ToString.Exclude
-		private List<Disponibilidade> restricoesHorario;
-	//
-	
 	@ManyToOne
 	@JoinColumn(name="departamento_id")
 	private Departamentos departamento;

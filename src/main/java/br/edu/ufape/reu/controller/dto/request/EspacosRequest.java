@@ -13,7 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter @Setter @NoArgsConstructor
 public  class EspacosRequest  {
 	private Long id;
@@ -24,10 +23,6 @@ public  class EspacosRequest  {
 	private Departamentos departamento;
 	private List<EquipamentosRequest> equipamentos;
 	private List<ReservasRequest> reservas;
-
-	private String horarioDisponivel;
-	private List<RestricoesHorarioRequest> restricoesHorario;
-
 
 	public Espacos convertToEntity() {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");
