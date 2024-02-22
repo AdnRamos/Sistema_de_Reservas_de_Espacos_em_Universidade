@@ -1,5 +1,7 @@
 package br.edu.ufape.reu.facade;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import br.edu.ufape.reu.service.DepartamentosService;
 import br.edu.ufape.reu.service.EquipamentosService;
 import br.edu.ufape.reu.service.EspacosService;
 import br.edu.ufape.reu.service.FotosService;
+import br.edu.ufape.reu.service.HorarioReservadoException;
 import br.edu.ufape.reu.service.PenalidadesService;
 import br.edu.ufape.reu.service.ReservasService;
 import br.edu.ufape.reu.service.UsuariosService;
@@ -48,6 +51,10 @@ public class Facade {
 
 	public void deleteUsuarios(long id) {
 		usuariosService.deleteUsuarios(id);
+	}
+	
+	public Usuarios login(String email, String senha) throws RuntimeException {
+		return usuariosService.login(email,senha);
 	}
 
 
@@ -107,6 +114,10 @@ public class Facade {
 	public void deleteEquipamentos(long id) {
 		equipamentosService.deleteEquipamentos(id);
 	}
+	
+	public List<Equipamentos> getEquipamentoEspaco(long idEspaco) {
+		return equipamentosService.getEquipamentosEspaco(idEspaco);
+	}
 
 
 	//Espacos--------------------------------------------------------------
@@ -145,7 +156,7 @@ public class Facade {
 	@Autowired
 	private ReservasService reservasService;
 
-	public Reservas saveReservas(Reservas newInstance) {
+	public Reservas saveReservas(Reservas newInstance) throws HorarioReservadoException{
 		return reservasService.saveReservas(newInstance);
 	}
 
@@ -167,6 +178,10 @@ public class Facade {
 
 	public void deleteReservas(long id) {
 		reservasService.deleteReservas(id);
+	}
+	
+	public List<Reservas> findReservasUsuario(long idUsuario){
+		return reservasService.findReservasUsuario(idUsuario);
 	}
 
 	//Penalidades--------------------------------------------------------------

@@ -34,4 +34,8 @@ public  class Equipamentos  {
 	@ManyToOne
 	@JoinColumn(name="espaco_id",nullable = false)
 	private Espacos espaco;
+
+	public boolean getStatus() {
+		return this.status;
+	}
 }

@@ -17,6 +17,7 @@ import lombok.Setter;
 public  class EspacosRequest  {
 	private Long id;
 	private String nome;
+	private String regrasEspecificas;
 	private TipoEspaco tipo;
 	private int capacidade;
 	private List<Fotos> fotos;

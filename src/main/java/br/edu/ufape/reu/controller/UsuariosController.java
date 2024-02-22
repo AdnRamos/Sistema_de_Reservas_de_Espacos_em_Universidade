@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.edu.ufape.reu.controller.dto.request.LoginRequest;
 import br.edu.ufape.reu.controller.dto.request.UsuariosRequest;
 import br.edu.ufape.reu.controller.dto.response.UsuariosResponse;
 import br.edu.ufape.reu.facade.Facade;
@@ -26,6 +27,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class UsuariosController {
 	@Autowired
 	private Facade facade;
@@ -82,5 +84,15 @@ public class UsuariosController {
 
 	}
 
+	@PostMapping("/login")
+	public UsuariosResponse login(@Valid @RequestBody LoginRequest newObj) {
+		try {
+			return new UsuariosResponse(facade.login(newObj.getEmail(), newObj.getSenha()));
+		} catch (RuntimeException ex) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
+		}
+		
+	}
+	
 
 }

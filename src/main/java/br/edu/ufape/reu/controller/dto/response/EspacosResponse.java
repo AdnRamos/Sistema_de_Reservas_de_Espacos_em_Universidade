@@ -16,10 +16,12 @@ import lombok.Setter;
 public  class EspacosResponse  {
 	private Long id;
 	private String nome;
+	private String regrasEspecificas;
 	private TipoEspaco tipo;
 	private int capacidade;
 	private List<Fotos> fotos;
 	private Long departamentoID;
+	private String departamentoNome;
 	private List<EquipamentosResponse> equipamentos;
 	private List<ReservasResponse> reservas;
 

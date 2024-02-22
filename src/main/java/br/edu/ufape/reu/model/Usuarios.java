@@ -41,6 +41,9 @@ public class Usuarios  {
 	@Column(length = 50)
 	private String email;
 	
+	@Column(length = 25)
+	private String senha;
+	
 	@Enumerated(EnumType.ORDINAL)
 	@Column(nullable = false)
 	private TipoUsuario tipo;

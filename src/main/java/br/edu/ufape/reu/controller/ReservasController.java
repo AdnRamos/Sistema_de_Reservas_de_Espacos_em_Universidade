@@ -1,5 +1,6 @@
 package br.edu.ufape.reu.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -18,14 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.edu.ufape.reu.controller.dto.request.ReservasRequest;
+import br.edu.ufape.reu.controller.dto.response.EquipamentosResponse;
 import br.edu.ufape.reu.controller.dto.response.ReservasResponse;
+import br.edu.ufape.reu.enums.StatusReserva;
 import br.edu.ufape.reu.facade.Facade;
+import br.edu.ufape.reu.model.Equipamentos;
 import br.edu.ufape.reu.model.Reservas;
+import br.edu.ufape.reu.service.HorarioReservadoException;
 import jakarta.validation.Valid;
 
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class ReservasController {
 	@Autowired
 	private Facade facade;
@@ -42,7 +48,13 @@ public class ReservasController {
 
 	@PostMapping("reservas")
 	public ReservasResponse createReservas(@Valid @RequestBody ReservasRequest newObj) {
-		return new ReservasResponse(facade.saveReservas(newObj.convertToEntity()));
+		try {
+			return new ReservasResponse(facade.saveReservas(newObj.convertToEntity()));
+		}catch(HorarioReservadoException exception) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, exception.getMessage());
+		}catch(Exception e) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Can't save reserva.");
+		}
 	}
 
 	@GetMapping("reservas/{id}")
@@ -85,5 +97,11 @@ public class ReservasController {
 
 	}
 
-
+	@GetMapping("reservas/usuario/{idUsuario}")
+	public List<ReservasResponse> listReservasUsuario(@PathVariable Long idUsuario) {
+		return facade.findReservasUsuario(idUsuario)
+			.stream()
+			.map(ReservasResponse::new)
+			.toList();
+	}
 }

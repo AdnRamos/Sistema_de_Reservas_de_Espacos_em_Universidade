@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.edu.ufape.reu.controller.dto.request.PenalidadesRequest;
 import br.edu.ufape.reu.controller.dto.response.PenalidadesResponse;
 import br.edu.ufape.reu.controller.dto.response.ReservasResponse;
+import br.edu.ufape.reu.enums.StatusReserva;
 import br.edu.ufape.reu.facade.Facade;
 import br.edu.ufape.reu.model.Penalidades;
 import br.edu.ufape.reu.model.Reservas;
@@ -28,6 +29,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class PenalidadesController {
 	@Autowired
 	private Facade facade;
@@ -38,6 +40,7 @@ public class PenalidadesController {
     public ReservasResponse createPenalidades(@PathVariable Long idReserva, @Valid @RequestBody PenalidadesRequest newObj) {
 		Reservas oldObject = facade.findReservasById(idReserva);
 		oldObject.setPenalidade(newObj.convertToEntity());
+		oldObject.setStatus(StatusReserva.penalizado);
 		return new ReservasResponse(facade.updateReservas(oldObject));
     }
 

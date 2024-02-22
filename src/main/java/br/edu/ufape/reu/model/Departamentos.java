@@ -2,6 +2,9 @@ package br.edu.ufape.reu.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,7 +36,7 @@ public class Departamentos  {
 	@Column(length = 11)
 	private String contato;
 	
-	@OneToMany(mappedBy = "departamento")
+	@OneToMany(mappedBy = "departamento", cascade = CascadeType.REMOVE)
 	@ToString.Exclude
 	private List<Espacos> espacos;
 }

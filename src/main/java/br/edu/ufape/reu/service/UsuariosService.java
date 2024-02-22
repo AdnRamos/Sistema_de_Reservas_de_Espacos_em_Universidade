@@ -45,7 +45,17 @@ public class UsuariosService implements UsuariosServiceInterface {
 		Usuarios obj = repository.findById(id).orElseThrow( () -> new RuntimeException("It doesn't exist Usuarios with id = " + id));
 		repository.delete(obj);
 	}
-
+	
+	@Override
+	public Usuarios login(String email, String senha) throws RuntimeException {
+		Usuarios user = repository.findByEmailAndSenha(email, senha);
+		
+		if(user == null) {
+			throw new RuntimeException("User not found.");
+		}
+		
+		return user;
+	}
 
 
 }

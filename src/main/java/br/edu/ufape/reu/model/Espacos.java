@@ -54,11 +54,11 @@ public class Espacos  {
 	@JoinColumn(name="espaco_id", nullable = false)
 	private List<Fotos> fotos;
 	
-	@OneToMany(mappedBy = "espaco")
+	@OneToMany(mappedBy = "espaco",cascade = CascadeType.REMOVE)
 	@ToString.Exclude
 	private List<Equipamentos> equipamentos;
 	
-	@OneToMany(mappedBy = "espaco")
+	@OneToMany(mappedBy = "espaco",cascade = CascadeType.REMOVE)
 	@ToString.Exclude
 	private List<Reservas> reservas;
 
