@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,6 +27,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class FotosController {
   @Autowired
   private Facade facade;
@@ -59,12 +61,12 @@ public class FotosController {
       //Fotos o = obj.convertToEntity();
       Fotos oldObject = facade.findFotosById(id);
       
-			TypeMap<FotosRequest, Fotos> typeMapper = modelMapper
-													.typeMap(FotosRequest.class, Fotos.class)
-													.addMappings(mapper -> mapper.skip(Fotos::setId));
-
-
-			typeMapper.map(obj, oldObject);
+//			TypeMap<FotosRequest, Fotos> typeMapper = modelMapper
+//													.typeMap(FotosRequest.class, Fotos.class)
+//													.addMappings(mapper -> mapper.skip(Fotos::setId));
+//
+//
+//			typeMapper.map(obj, oldObject);
       return new FotosResponse(facade.updateFotos(oldObject));
     } catch (RuntimeException ex) {
       throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());

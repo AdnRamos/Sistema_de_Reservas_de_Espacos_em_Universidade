@@ -33,7 +33,7 @@ public class FotosService implements FotosServiceInterface {
 
   @Override
   public void deleteFotos(Fotos persistentObject){
-    this.deleteFotos(persistentObject.getId());
+//    this.deleteFotos(persistentObject.getId());
   }
 
   @Override

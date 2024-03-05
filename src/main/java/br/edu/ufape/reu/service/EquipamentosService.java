@@ -13,7 +13,6 @@ public class EquipamentosService implements EquipamentosServiceInterface {
 	@Autowired
 	private EquipamentosRepository repository;
 
-
 	@Override
 	public Equipamentos saveEquipamentos(Equipamentos newInstance) {
 		return repository.save(newInstance);
@@ -36,7 +35,7 @@ public class EquipamentosService implements EquipamentosServiceInterface {
 
 	@Override
 	public void deleteEquipamentos(Equipamentos persistentObject){
-		this.deleteEquipamentos(persistentObject.getId());
+//		this.deleteEquipamentos(persistentObject.getId());
 
 	}
 
@@ -46,6 +45,10 @@ public class EquipamentosService implements EquipamentosServiceInterface {
 		repository.delete(obj);
 	}
 
-
+	@Override
+	public List<Equipamentos> getEquipamentosEspaco(long espacoId){
+		List<Equipamentos> equipamentos = repository.findByEspacoId(espacoId);
+		return equipamentos;
+	}
 
 }

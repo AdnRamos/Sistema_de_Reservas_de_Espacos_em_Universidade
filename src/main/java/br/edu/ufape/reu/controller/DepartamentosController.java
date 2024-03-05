@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,9 +24,9 @@ import br.edu.ufape.reu.facade.Facade;
 import br.edu.ufape.reu.model.Departamentos;
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class DepartamentosController {
 	@Autowired
 	private Facade facade;
@@ -50,16 +51,15 @@ public class DepartamentosController {
 		try {
 			return new DepartamentosResponse(facade.findDepartamentosById(id));
 		} catch (RuntimeException ex) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Departamentos " + id + " not found.");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Departamento " + id + " not found.");
 		}
 	}
 
 	@PatchMapping("departamentos/{id}")
 	public DepartamentosResponse updateDepartamentos(@PathVariable Long id, @Valid @RequestBody DepartamentosRequest obj) {
 		try {
-			//Departamentos o = obj.convertToEntity();
 			Departamentos oldObject = facade.findDepartamentosById(id);
-
+			
 			TypeMap<DepartamentosRequest, Departamentos> typeMapper = modelMapper
 													.typeMap(DepartamentosRequest.class, Departamentos.class)
 													.addMappings(mapper -> mapper.skip(Departamentos::setId));
@@ -77,7 +77,7 @@ public class DepartamentosController {
 	public String deleteDepartamentos(@PathVariable Long id) {
 		try {
 			facade.deleteDepartamentos(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}

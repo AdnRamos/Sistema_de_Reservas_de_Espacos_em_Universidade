@@ -1,11 +1,14 @@
 package br.edu.ufape.reu.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ufape.reu.model.Reservas;
+import br.edu.ufape.reu.model.Usuarios;
 import br.edu.ufape.reu.repository.ReservasRepository;
 
 @Service
@@ -15,7 +18,13 @@ public class ReservasService implements ReservasServiceInterface {
 
 
 	@Override
-	public Reservas saveReservas(Reservas newInstance) {
+	public Reservas saveReservas(Reservas newInstance) throws HorarioReservadoException {
+		List<Reservas> reservasNoHorario= repository.findByDataAndDataHoraInicioLessThanAndDataHoraTerminoGreaterThanAndEspacoId(newInstance.getData(),newInstance.getDataHoraTermino(),newInstance.getDataHoraInicio(),newInstance.getEspaco().getId());
+		
+		if(!reservasNoHorario.isEmpty()) {
+			throw new HorarioReservadoException();
+		}
+		
 		return repository.save(newInstance);
 	}
 
@@ -36,7 +45,7 @@ public class ReservasService implements ReservasServiceInterface {
 
 	@Override
 	public void deleteReservas(Reservas persistentObject){
-		this.deleteReservas(persistentObject.getId());
+//		this.deleteReservas(persistentObject.getId());
 
 	}
 
@@ -45,7 +54,13 @@ public class ReservasService implements ReservasServiceInterface {
 		Reservas obj = repository.findById(id).orElseThrow( () -> new RuntimeException("It doesn't exist Reservas with id = " + id));
 		repository.delete(obj);
 	}
-
-
+	
+	@Override
+	public List<Reservas> findReservasUsuario(long idUsuario){
+		List<Reservas> reservas= repository.findByUsuarioId(idUsuario);
+		
+	
+		return reservas;
+	}
 
 }

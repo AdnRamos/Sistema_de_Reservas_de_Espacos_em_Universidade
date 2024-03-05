@@ -7,7 +7,5 @@ import br.edu.ufape.reu.model.Usuarios;
 
 @Repository
 public interface UsuariosRepository extends JpaRepository<Usuarios, Long> {
-
-
-
+	public Usuarios findByEmailAndSenha(String email, String senha);
 }

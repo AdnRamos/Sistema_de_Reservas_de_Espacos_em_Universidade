@@ -5,28 +5,25 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 
 import br.edu.ufape.reu.config.SpringApplicationContext;
+import br.edu.ufape.reu.enums.TipoEspaco;
 import br.edu.ufape.reu.model.Espacos;
+import br.edu.ufape.reu.model.Fotos;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 
 @Getter @Setter @NoArgsConstructor
 public  class EspacosResponse  {
 	private Long id;
 	private String nome;
-	private String tipo;
+	private String regrasEspecificas;
+	private TipoEspaco tipo;
 	private int capacidade;
-	private String equipamentosDisponiveis;
-	private String fotos;
-	private String horarioDisponivel;
+	private List<Fotos> fotos;
 	private Long departamentoID;
+	private String departamentoNome;
 	private List<EquipamentosResponse> equipamentos;
 	private List<ReservasResponse> reservas;
-	private List<RestricoesHorarioResponse> restricoesHorario;
-
-
 
 	public EspacosResponse(Espacos obj) {
 		ModelMapper modelMapper = (ModelMapper) SpringApplicationContext.getBean("modelMapper");

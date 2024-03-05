@@ -14,7 +14,6 @@ public class DepartamentosService implements DepartamentosServiceInterface {
 	@Autowired
 	private DepartamentosRepository repository;
 
-
 	@Override
 	public Departamentos saveDepartamentos(Departamentos newInstance) {
 		return repository.save(newInstance);
@@ -38,7 +37,6 @@ public class DepartamentosService implements DepartamentosServiceInterface {
 	@Override
 	public void deleteDepartamentos(Departamentos persistentObject){
 		this.deleteDepartamentos(persistentObject.getId());
-
 	}
 
 	@Override

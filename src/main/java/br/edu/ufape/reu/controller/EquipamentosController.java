@@ -21,11 +21,13 @@ import br.edu.ufape.reu.controller.dto.request.EquipamentosRequest;
 import br.edu.ufape.reu.controller.dto.response.EquipamentosResponse;
 import br.edu.ufape.reu.facade.Facade;
 import br.edu.ufape.reu.model.Equipamentos;
+import br.edu.ufape.reu.model.Espacos;
 import jakarta.validation.Valid;
 
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class EquipamentosController {
 	@Autowired
 	private Facade facade;
@@ -57,13 +59,12 @@ public class EquipamentosController {
 	@PatchMapping("equipamentos/{id}")
 	public EquipamentosResponse updateEquipamentos(@PathVariable Long id, @Valid @RequestBody EquipamentosRequest obj) {
 		try {
-			//Equipamentos o = obj.convertToEntity();
 			Equipamentos oldObject = facade.findEquipamentosById(id);
 
 			TypeMap<EquipamentosRequest, Equipamentos> typeMapper = modelMapper
 													.typeMap(EquipamentosRequest.class, Equipamentos.class)
-													.addMappings(mapper -> mapper.skip(Equipamentos::setId));
-
+													.addMappings(mapper -> mapper.skip(Equipamentos::setId))
+													.addMappings(mapper -> mapper.skip(Equipamentos::setEspaco));
 
 			typeMapper.map(obj, oldObject);
 			return new EquipamentosResponse(facade.updateEquipamentos(oldObject));
@@ -77,11 +78,33 @@ public class EquipamentosController {
 	public String deleteEquipamentos(@PathVariable Long id) {
 		try {
 			facade.deleteEquipamentos(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}
 
+	}
+	
+	@GetMapping("equipamentos/espaco/{idEspaco}")
+	public List<EquipamentosResponse> getAllEquipamentos(@PathVariable Long idEspaco) {
+		return facade.getEquipamentoEspaco(idEspaco)
+			.stream()
+			.map(EquipamentosResponse::new)
+			.toList();
+	}
+	
+	@PostMapping("equipamentos/status/{id}")
+	public EquipamentosResponse trocarStatusEquipamento(@PathVariable Long id) {
+		try {
+			Equipamentos oldObject = facade.findEquipamentosById(id);
+			
+			oldObject.setStatus(!oldObject.getStatus());
+			
+			return new EquipamentosResponse(facade.saveEquipamentos(oldObject));
+		} catch (RuntimeException ex) {
+			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
+		}
+	
 	}
 
 

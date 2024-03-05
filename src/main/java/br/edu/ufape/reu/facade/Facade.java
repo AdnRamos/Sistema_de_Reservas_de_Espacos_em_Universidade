@@ -1,5 +1,7 @@
 package br.edu.ufape.reu.facade;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +13,14 @@ import br.edu.ufape.reu.model.Espacos;
 import br.edu.ufape.reu.model.Fotos;
 import br.edu.ufape.reu.model.Penalidades;
 import br.edu.ufape.reu.model.Reservas;
-import br.edu.ufape.reu.model.Disponibilidade;
 import br.edu.ufape.reu.model.Usuarios;
 import br.edu.ufape.reu.service.DepartamentosService;
 import br.edu.ufape.reu.service.EquipamentosService;
 import br.edu.ufape.reu.service.EspacosService;
 import br.edu.ufape.reu.service.FotosService;
+import br.edu.ufape.reu.service.HorarioReservadoException;
 import br.edu.ufape.reu.service.PenalidadesService;
 import br.edu.ufape.reu.service.ReservasService;
-import br.edu.ufape.reu.service.RestricoesHorarioService;
 import br.edu.ufape.reu.service.UsuariosService;
 
 @Service
@@ -51,34 +52,9 @@ public class Facade {
 	public void deleteUsuarios(long id) {
 		usuariosService.deleteUsuarios(id);
 	}
-
-
-	//Disponibilidade--------------------------------------------------------------
-	@Autowired
-	private RestricoesHorarioService  disponibilidadeService;
-
-	public Disponibilidade saveRestricoesHorario(Disponibilidade newInstance) {
-		return disponibilidadeService.saveRestricoesHorario(newInstance);
-	}
-
-	public Disponibilidade updateRestricoesHorario(Disponibilidade transientObject) {
-		return disponibilidadeService.updateRestricoesHorario(transientObject);
-	}
-
-	public Disponibilidade findRestricoesHorarioById(long id) {
-		return disponibilidadeService.findRestricoesHorarioById(id);
-	}
-
-	public List<Disponibilidade> getAllRestricoesHorario() {
-		return disponibilidadeService.getAllRestricoesHorario();
-	}
-
-	public void deleteRestricoesHorario(Disponibilidade persistentObject) {
-		disponibilidadeService.deleteRestricoesHorario(persistentObject);
-	}
-
-	public void deleteRestricoesHorario(long id) {
-		disponibilidadeService.deleteRestricoesHorario(id);
+	
+	public Usuarios login(String email, String senha) throws RuntimeException {
+		return usuariosService.login(email,senha);
 	}
 
 
@@ -138,6 +114,10 @@ public class Facade {
 	public void deleteEquipamentos(long id) {
 		equipamentosService.deleteEquipamentos(id);
 	}
+	
+	public List<Equipamentos> getEquipamentoEspaco(long idEspaco) {
+		return equipamentosService.getEquipamentosEspaco(idEspaco);
+	}
 
 
 	//Espacos--------------------------------------------------------------
@@ -145,6 +125,9 @@ public class Facade {
 	private EspacosService  espacosService;
 
 	public Espacos saveEspacos(Espacos newInstance) {
+		if(newInstance.getFotos()!= null && !newInstance.getFotos().isEmpty()) {
+			
+		}
 		return espacosService.saveEspacos(newInstance);
 	}
 
@@ -173,7 +156,7 @@ public class Facade {
 	@Autowired
 	private ReservasService reservasService;
 
-	public Reservas saveReservas(Reservas newInstance) {
+	public Reservas saveReservas(Reservas newInstance) throws HorarioReservadoException{
 		return reservasService.saveReservas(newInstance);
 	}
 
@@ -195,6 +178,10 @@ public class Facade {
 
 	public void deleteReservas(long id) {
 		reservasService.deleteReservas(id);
+	}
+	
+	public List<Reservas> findReservasUsuario(long idUsuario){
+		return reservasService.findReservasUsuario(idUsuario);
 	}
 
 	//Penalidades--------------------------------------------------------------

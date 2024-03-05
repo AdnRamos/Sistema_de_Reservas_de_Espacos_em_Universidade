@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,6 +26,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin (origins = "http://localhost:5173/" )
 public class EspacosController {
 	@Autowired
 	private Facade facade;
@@ -56,15 +58,17 @@ public class EspacosController {
 	@PatchMapping("espacos/{id}")
 	public EspacosResponse updateEspacos(@PathVariable Long id, @Valid @RequestBody EspacosRequest obj) {
 		try {
-			//Espacos o = obj.convertToEntity();
 			Espacos oldObject = facade.findEspacosById(id);
+			int oldCapacity = oldObject.getCapacidade();
 
 			TypeMap<EspacosRequest, Espacos> typeMapper = modelMapper
 													.typeMap(EspacosRequest.class, Espacos.class)
-													.addMappings(mapper -> mapper.skip(Espacos::setId));
-
-
+													.addMappings(mapper -> mapper.skip(Espacos::setId))
+													.addMappings(mapper -> mapper.skip(Espacos::setDepartamento));
 			typeMapper.map(obj, oldObject);
+			if(obj.getCapacidade() == 0) {
+				oldObject.setCapacidade(oldCapacity);
+			}
 			return new EspacosResponse(facade.updateEspacos(oldObject));
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
@@ -76,7 +80,7 @@ public class EspacosController {
 	public String deleteEspacos(@PathVariable Long id) {
 		try {
 			facade.deleteEspacos(id);
-			return "";
+			return "Deleted Successfully";
 		} catch (RuntimeException ex) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
 		}
